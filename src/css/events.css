@@ -1813,31 +1813,29 @@
 
 /* Ukuran Default (Desktop) */
 .event-title {
-  font-size: 2.5rem !important;
+  font-size: 3 rem !important;
   /* Turun dari 3.5rem menjadi 2.5rem */
-  line-height: 1.2 !important;
-  margin-bottom: 0;
-  padding: 0 1rem;
+
   /* Tambahan padding agar judul tidak terlalu mepet tepi layar */
 }
 
 /* Ukuran Tablet */
 @media (max-width: 900px) {
   .event-title {
-    font-size: 2.2rem !important;
+    font-size: 2.4rem !important;
   }
 }
 
 /* Ukuran HP (Mobile Landscape/Portrait) */
 @media (max-width: 768px) {
   .event-title {
-    font-size: 1.8rem !important;
+    font-size: 2.1rem !important;
   }
 }
 
 /* Ukuran HP Layar Kecil */
 @media (max-width: 480px) {
   .event-title {
-    font-size: 1.5rem !important;
+    font-size: 1.8rem !important;
   }
 }
