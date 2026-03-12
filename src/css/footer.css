@@ -163,3 +163,42 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* === GUNAKAN KODE INI UNTUK MEMAKSA KE TENGAH === */
+  .footer-brand-col {
+    order: 1;
+    /* Membuatnya tampil paling bawah */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    /* Memusatkan logo/gambar */
+    text-align: center !important;
+    /* Memusatkan teks */
+    width: 100%;
+  }
+
+  .footer-logo {
+    margin: 0 auto 0.75rem auto !important;
+    display: block !important;
+  }
+
+  /* ================================================ */
+
+  .footer-contact-item {
+    justify-content: center;
+  }
+
+  .footer-social-links {
+    justify-content: center;
+  }
+
+  .footer-links a:hover {
+    transform: none;
+  }
+}

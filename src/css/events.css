@@ -125,7 +125,7 @@
     @apply relative border-none cursor-pointer;
     padding: 0.5rem 1.25rem;
     background: transparent;
-    border-radius: 50px;
+    border-radius: 30px;
     transition: all 0.3s ease;
     font-family: var(--font-head);
     font-size: 1rem;
@@ -1225,279 +1225,317 @@
   }
 
   @media (max-width: 768px) {
-    .events-wave-svg {
-      width: 200%;
-      left: -50%;
-    }
 
-    .timeline-section {
-      padding: 2.5rem 1.25rem;
-      border-radius: 16px;
-    }
-
-    .timeline-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .timeline-line {
-      left: 20px;
-      width: 3px;
-    }
-
-    .timeline-item {
-      width: 100%;
-      padding-left: 50px !important;
-      padding-right: 1rem !important;
-      text-align: left !important;
-    }
-
-    .timeline-item.left,
-    .timeline-item.right {
-      left: 0;
-      padding-left: 50px !important;
-      padding-right: 1rem !important;
-      text-align: left !important;
-    }
-
-    .timeline-item.left .timeline-dot,
-    .timeline-item.right .timeline-dot {
-      left: 12px;
-      right: auto;
-      width: 16px;
-      height: 16px;
-      border-width: 3px;
-    }
-
-    .timeline-card {
-      padding: 1.25rem 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    }
-
-    .timeline-card::before {
-      width: 40px;
-      height: 40px;
-    }
-
-    .timeline-card:hover::before {
-      width: 50px;
-      height: 50px;
-    }
-
-    .timeline-card i,
-    .timeline-card svg {
-      width: 20px;
-      height: 20px;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .timeline-card span {
-      font-size: 0.85rem;
-    }
-
-    .timeline-dot {
-      animation: none;
-    }
-
-    .prizes-horizontal {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .timeline-section.compact {
-      padding: 1.5rem 1rem;
-    }
-
-    .timeline-section.compact .timeline-title {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .compact-timeline .timeline-line {
-      left: 15px;
-      transform: none;
-    }
-
-    .timeline-item-compact,
-    .timeline-item-compact:nth-child(odd),
-    .timeline-item-compact:nth-child(even) {
-      width: 100%;
-      left: 0;
-      padding-left: 40px;
-      padding-right: 0.5rem;
-      text-align: left;
-    }
-
-    .timeline-item-compact:nth-child(odd) .timeline-dot-compact,
-    .timeline-item-compact:nth-child(even) .timeline-dot-compact {
-      left: 8px;
-      right: auto;
-    }
-
-    .timeline-item-compact:nth-child(odd) .timeline-card-compact,
-    .timeline-item-compact:nth-child(even) .timeline-card-compact {
-      border-left: 3px solid var(--green);
-      border-right: none;
-    }
-
-    .timeline-card-compact {
-      padding: 0.5rem 0.75rem;
-    }
-
-    .timeline-card-compact h4 {
-      font-size: 0.8rem;
-    }
-
-    .timeline-card-compact span {
-      font-size: 0.65rem;
-    }
-
-    .hashtag {
-      font-size: 0.7rem;
-      padding: 0.35rem 0.75rem;
-    }
-
-    .hashtag-register-btn {
-      width: 100%;
-      padding: 0.7rem 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .event-split-layout .event-card {
-      padding: 1.25rem;
-    }
-
-    .footer-top {
-      flex-direction: column !important;
-      gap: 2.5rem !important;
-      text-align: left !important;
-    }
-
-    .footer-brand,
-    .footer-nav,
-    .footer-contact {
+    /* * Gunakan selector :not([style*="none"]) agar tidak bentrok dengan 
+   * JavaScript yang melakukan hide/show pada tab.
+   * Ini memaksa container menjadi Grid 2x2 yang tertutup rapi.
+   */
+    .event-nav:not([style*="none"]) {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 0.5rem !important;
+      padding: 0.5rem !important;
+      border-radius: 16px !important;
+      /* Paksa wadah menjadi kotak membulat */
       width: 100% !important;
-      max-width: 100% !important;
-      text-align: left !important;
+      max-width: 340px !important;
+      /* Batas lebar aman untuk mobile */
+      margin: 0 auto !important;
+      /* Pastikan selalu di tengah */
+      box-sizing: border-box !important;
     }
 
-    .footer-brand h2 {
-      font-size: 2.5rem !important;
-    }
-
-    .footer-brand p {
-      max-width: 100% !important;
+    /* Mengatur tombol agar fleksibel di dalam sel Grid */
+    .event-nav-btn {
+      width: 100% !important;
+      height: 100% !important;
       margin: 0 !important;
-    }
-
-    .footer-nav,
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .footer-nav a,
-    .footer-contact p {
-      text-align: left;
-    }
-
-    .footer-socials {
-      justify-content: flex-start !important;
-    }
-
-    .footer-register-btn {
-      display: inline-block;
-      margin: 1rem 0 0 !important;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .events-hero {
-      min-height: 35vh !important;
-      padding: 3rem 0 2rem !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-
-    .events-hero-title {
-      font-size: 2rem !important;
-    }
-
-    .events-hero .text-2xl {
-      font-size: 0.95rem !important;
-    }
-
-    .events-hero .font-body {
+      padding: 0.5rem 0.25rem !important;
       font-size: 0.85rem !important;
-      margin-top: 0.5rem !important;
-    }
-
-    .event-type-tab {
-      font-size: 0.8rem !important;
-      padding: 0.6rem 0.9rem !important;
-    }
-
-    .competition-card h3,
-    .event-card h3 {
-      font-size: 1.25rem !important;
-    }
-
-    .prizes-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .events-tabs-section {
-      position: static;
-    }
-
-    .highlight-date {
-      font-size: 1.8rem;
+      border-radius: 50px !important;
+      white-space: normal !important;
+      /* PENTING: Izinkan "BIM Workshop" turun ke baris baru */
+      line-height: 1.2 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
     }
   }
 
-  @media (max-width: 480px) {
-    .events-wave-svg {
-      width: 300%;
-      left: -100%;
-    }
+  .events-wave-svg {
+    width: 200%;
+    left: -50%;
+  }
 
-    .timeline-section {
-      padding: 2rem 1rem;
-      margin: 2rem 0;
-    }
+  .timeline-section {
+    padding: 2.5rem 1.25rem;
+    border-radius: 16px;
+  }
 
-    .timeline-title {
-      font-size: 1.75rem;
-    }
+  .timeline-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-    .timeline-card {
-      padding: 1rem 1.25rem;
-    }
+  .timeline-line {
+    left: 20px;
+    width: 3px;
+  }
 
-    .timeline-card h4 {
-      font-size: 1rem;
-    }
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px !important;
+    padding-right: 1rem !important;
+    text-align: left !important;
+  }
 
-    .timeline-card span {
-      font-size: 0.8rem;
-    }
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    padding-left: 50px !important;
+    padding-right: 1rem !important;
+    text-align: left !important;
+  }
 
-    .prizes-horizontal {
-      grid-template-columns: 1fr;
-    }
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: 12px;
+    right: auto;
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
+  }
 
-    .prizes-horizontal .prize-item {
-      padding: 0.75rem;
-    }
+  .timeline-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .timeline-card::before {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline-card:hover::before {
+    width: 50px;
+    height: 50px;
+  }
+
+  .timeline-card i,
+  .timeline-card svg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .timeline-card span {
+    font-size: 0.85rem;
+  }
+
+  .timeline-dot {
+    animation: none;
+  }
+
+  .prizes-horizontal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline-section.compact {
+    padding: 1.5rem 1rem;
+  }
+
+  .timeline-section.compact .timeline-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .compact-timeline .timeline-line {
+    left: 15px;
+    transform: none;
+  }
+
+  .timeline-item-compact,
+  .timeline-item-compact:nth-child(odd),
+  .timeline-item-compact:nth-child(even) {
+    width: 100%;
+    left: 0;
+    padding-left: 40px;
+    padding-right: 0.5rem;
+    text-align: left;
+  }
+
+  .timeline-item-compact:nth-child(odd) .timeline-dot-compact,
+  .timeline-item-compact:nth-child(even) .timeline-dot-compact {
+    left: 8px;
+    right: auto;
+  }
+
+  .timeline-item-compact:nth-child(odd) .timeline-card-compact,
+  .timeline-item-compact:nth-child(even) .timeline-card-compact {
+    border-left: 3px solid var(--green);
+    border-right: none;
+  }
+
+  .timeline-card-compact {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .timeline-card-compact h4 {
+    font-size: 0.8rem;
+  }
+
+  .timeline-card-compact span {
+    font-size: 0.65rem;
+  }
+
+  .hashtag {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hashtag-register-btn {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .event-split-layout .event-card {
+    padding: 1.25rem;
+  }
+
+  .footer-top {
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    text-align: left !important;
+  }
+
+  .footer-brand,
+  .footer-nav,
+  .footer-contact {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+
+  .footer-brand h2 {
+    font-size: 2.5rem !important;
+  }
+
+  .footer-brand p {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .footer-nav,
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-nav a,
+  .footer-contact p {
+    text-align: left;
+  }
+
+  .footer-socials {
+    justify-content: flex-start !important;
+  }
+
+  .footer-register-btn {
+    display: inline-block;
+    margin: 1rem 0 0 !important;
   }
 }
+
+@media (max-width: 600px) {
+  .events-hero {
+    min-height: 35vh !important;
+    padding: 3rem 0 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .events-hero-title {
+    font-size: 2rem !important;
+  }
+
+  .events-hero .text-2xl {
+    font-size: 0.95rem !important;
+  }
+
+  .events-hero .font-body {
+    font-size: 0.85rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .event-type-tab {
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.9rem !important;
+  }
+
+  .competition-card h3,
+  .event-card h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .prizes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-tabs-section {
+    position: static;
+  }
+
+  .highlight-date {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-wave-svg {
+    width: 300%;
+    left: -100%;
+  }
+
+  .timeline-section {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+  }
+
+  .timeline-title {
+    font-size: 1.75rem;
+  }
+
+  .timeline-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .timeline-card h4 {
+    font-size: 1rem;
+  }
+
+  .timeline-card span {
+    font-size: 0.8rem;
+  }
+
+  .prizes-horizontal {
+    grid-template-columns: 1fr;
+  }
+
+  .prizes-horizontal .prize-item {
+    padding: 0.75rem;
+  }
+}
+
 
 @media (max-width: 768px) {
   .events-wave-svg {
@@ -1770,5 +1808,36 @@
 
   .prizes-horizontal .prize-item {
     padding: 0.75rem;
+  }
+}
+
+/* Ukuran Default (Desktop) */
+.event-title {
+  font-size: 2.5rem !important;
+  /* Turun dari 3.5rem menjadi 2.5rem */
+  line-height: 1.2 !important;
+  margin-bottom: 0;
+  padding: 0 1rem;
+  /* Tambahan padding agar judul tidak terlalu mepet tepi layar */
+}
+
+/* Ukuran Tablet */
+@media (max-width: 900px) {
+  .event-title {
+    font-size: 2.2rem !important;
+  }
+}
+
+/* Ukuran HP (Mobile Landscape/Portrait) */
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* Ukuran HP Layar Kecil */
+@media (max-width: 480px) {
+  .event-title {
+    font-size: 1.5rem !important;
   }
 }
