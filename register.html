@@ -1054,8 +1054,15 @@
         document.getElementById('submitBtn').addEventListener('click', function () {
             const form = document.getElementById('registrationForm');
             if (!form.checkValidity()) {
-                // Find first invalid element
-                const firstInvalid = form.querySelector(':invalid');
+                // Find first invalid element (skip the form element itself)
+                const allInvalid = form.querySelectorAll(':invalid');
+                let firstInvalid = null;
+                for (const el of allInvalid) {
+                    if (el !== form && !el.disabled && el.offsetParent !== null) {
+                        firstInvalid = el;
+                        break;
+                    }
+                }
                 if (firstInvalid) {
                     // Visual feedback
                     firstInvalid.classList.add('shake-animation');
@@ -1069,18 +1076,23 @@
                         firstInvalid.classList.remove('shake-animation');
                     }, 2000);
 
-                    // Force scroll with offset for fixed header (backup to CSS scroll-margin)
-                    const headerOffset = 120;
-                    const elementPosition = firstInvalid.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    // Scroll accurately: get the navbar height dynamically
+                    const navbar = document.getElementById('navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    const extraPadding = 20; // extra space below the navbar
+                    const elementRect = firstInvalid.getBoundingClientRect();
+                    const absoluteElementTop = elementRect.top + window.scrollY;
+                    const scrollTarget = absoluteElementTop - navbarHeight - extraPadding;
 
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: scrollTarget,
                         behavior: "smooth"
                     });
 
-                    // Focus for accessibility
-                    firstInvalid.focus({ preventScroll: true });
+                    // Focus after scroll completes for accessibility
+                    setTimeout(() => {
+                        firstInvalid.focus({ preventScroll: true });
+                    }, 500);
                 }
             }
         });
