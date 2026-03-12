@@ -1,0 +1,91 @@
+/* =========================================
+   ANIMATIONS & KEYFRAMES
+   ========================================= */
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Timeline Fade */
+@keyframes fadeInTimeline {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(217, 4, 41, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(217, 4, 41, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 4, 41, 0); }
+}
+
+/* Marquee Scroll */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Gradient Shift - Coming Soon */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Float Particle - Coming Soon */
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Logo Pulse - Coming Soon */
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.3)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(100, 200, 255, 0.5)); }
+}
+
+/* Speaker Fade In */
+@keyframes fadeInSpeaker {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Modal Slide In */
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Scroll Reveal */
+@layer components {
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Grid Pattern */
+  .grid-pattern {
+    @apply absolute top-0 left-0 w-full h-full pointer-events-none;
+    background-image:
+      linear-gradient(rgba(249, 245, 234, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249, 245, 234, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+  }
+}

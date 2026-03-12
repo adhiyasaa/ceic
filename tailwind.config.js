@@ -1,0 +1,75 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './*.html',
+    './src/**/*.{js,css}',
+    './script.js'
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'ceic-red': '#D90429',
+        'ceic-red-dark': '#B80322',
+        'ceic-red-darker': '#9A0219',
+        'ceic-green': '#3A7A5C',
+        'ceic-green-dark': '#2A5A46',
+        'ceic-green-darker': '#1E4333',
+        'ceic-cream': '#F9F5EA',
+        'ceic-cream-50': '#FDFCF8',
+        'ceic-cream-dark': '#F0E9D8',
+        'ceic-cream-darker': '#E8DFC8',
+        'ceic-dark': '#1A1A1A',
+      },
+      fontFamily: {
+        'head': ['Teko', 'sans-serif'],
+        'accent': ['Space Grotesk', 'sans-serif'],
+        'body': ['Public Sans', 'sans-serif'],
+      },
+      spacing: {
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '5': '1.25rem',
+        '6': '1.5rem',
+        '8': '2rem',
+        '10': '2.5rem',
+        '12': '3rem',
+        '16': '4rem',
+        '20': '5rem',
+        '24': '6rem',
+        '32': '8rem',
+      },
+      borderRadius: {
+        'sm': '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+        '2xl': '1.5rem',
+        'full': '9999px',
+      },
+      boxShadow: {
+        'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'sm': '0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+        'md': '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
+        'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
+        'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.05)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        'green': '0 10px 30px -5px rgba(58, 122, 92, 0.3)',
+        'red': '0 10px 30px -5px rgba(217, 4, 41, 0.3)',
+        'green-lg': '0 20px 40px -10px rgba(58, 122, 92, 0.4)',
+        'red-lg': '0 20px 40px -10px rgba(217, 4, 41, 0.4)',
+      },
+      transitionDuration: {
+        'fast': '150ms',
+        'base': '250ms',
+        'slow': '350ms',
+        'smooth': '500ms',
+      },
+      transitionTimingFunction: {
+        'ease-custom': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
+    },
+  },
+  plugins: [],
+}

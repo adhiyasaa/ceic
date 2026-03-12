@@ -1,0 +1,249 @@
+/* =========================================
+   COMING SOON / COUNTDOWN PAGE STYLES
+   (from styles.css)
+   ========================================= */
+
+@layer components {
+  /* Coming soon page uses its own color scheme */
+  .cs-body {
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    @apply flex items-center justify-center overflow-hidden relative;
+    background: linear-gradient(135deg, #0a1628 0%, #162447 50%, #1f4068 100%);
+    color: #e8f4f8;
+  }
+
+  /* Animated background gradient */
+  .cs-animated-bg {
+    @apply fixed top-0 left-0 w-full h-full;
+    background: linear-gradient(45deg, #0a1628 0%, #162447 25%, #1f4068 50%, #1b3a5c 75%, #0d1f3c 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: 0;
+  }
+
+  /* Floating particles */
+  .cs-particles {
+    @apply fixed top-0 left-0 w-full h-full pointer-events-none;
+    z-index: 1;
+  }
+
+  .cs-particle {
+    @apply absolute rounded-full;
+    background: rgba(100, 200, 255, 0.15);
+    animation: floatParticle 20s infinite linear;
+  }
+
+  .cs-particle:nth-child(1) { width: 6px; height: 6px; left: 10%; animation-delay: 0s; animation-duration: 25s; }
+  .cs-particle:nth-child(2) { width: 4px; height: 4px; left: 20%; animation-delay: -5s; animation-duration: 20s; }
+  .cs-particle:nth-child(3) { width: 8px; height: 8px; left: 35%; animation-delay: -10s; animation-duration: 28s; }
+  .cs-particle:nth-child(4) { width: 5px; height: 5px; left: 50%; animation-delay: -7s; animation-duration: 22s; }
+  .cs-particle:nth-child(5) { width: 3px; height: 3px; left: 65%; animation-delay: -3s; animation-duration: 18s; }
+  .cs-particle:nth-child(6) { width: 7px; height: 7px; left: 75%; animation-delay: -12s; animation-duration: 30s; }
+  .cs-particle:nth-child(7) { width: 4px; height: 4px; left: 85%; animation-delay: -8s; animation-duration: 24s; }
+  .cs-particle:nth-child(8) { width: 6px; height: 6px; left: 90%; animation-delay: -2s; animation-duration: 26s; }
+
+  /* Main container */
+  .cs-main-container {
+    @apply relative text-center;
+    max-width: 600px;
+    padding: 3rem 2rem;
+    z-index: 2;
+  }
+
+  /* Logo */
+  .cs-logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .cs-logo {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.3));
+    animation: logoPulse 3s ease-in-out infinite;
+  }
+
+  /* Title */
+  .cs-title {
+    font-family: 'Teko', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    @apply uppercase;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #ffffff 0%, #64c8ff 50%, #3a9fd8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+    line-height: 1;
+  }
+
+  .cs-subtitle {
+    font-size: 1.2rem;
+    color: rgba(232, 244, 248, 0.7);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* Countdown Timer */
+  .cs-countdown-container {
+    @apply flex justify-center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .cs-countdown-box {
+    @apply text-center relative;
+    min-width: 80px;
+  }
+
+  .cs-countdown-value {
+    font-family: 'Teko', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(180deg, #ffffff 0%, #64c8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cs-countdown-label {
+    font-size: 0.75rem;
+    @apply uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(232, 244, 248, 0.5);
+    margin-top: 0.25rem;
+  }
+
+  .cs-countdown-separator {
+    font-family: 'Teko', sans-serif;
+    font-size: 3rem;
+    color: rgba(100, 200, 255, 0.4);
+    @apply self-start;
+    margin-top: 0.3rem;
+  }
+
+  /* Notification Form */
+  .cs-notification-form {
+    max-width: 400px;
+    @apply mx-auto;
+    margin-bottom: 2rem;
+  }
+
+  .cs-notification-form p {
+    font-size: 0.9rem;
+    color: rgba(232, 244, 248, 0.6);
+    margin-bottom: 1rem;
+  }
+
+  .cs-input-group {
+    @apply flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 0.35rem;
+    border: 1px solid rgba(100, 200, 255, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .cs-input-group:focus-within {
+    border-color: rgba(100, 200, 255, 0.4);
+    box-shadow: 0 0 20px rgba(100, 200, 255, 0.1);
+  }
+
+  .cs-input-group input[type="email"] {
+    @apply flex-1 border-none;
+    background: transparent;
+    color: #e8f4f8;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    outline: none;
+  }
+
+  .cs-input-group input[type="email"]::placeholder {
+    color: rgba(232, 244, 248, 0.4);
+  }
+
+  .cs-notify-btn {
+    @apply border-none cursor-pointer;
+    background: linear-gradient(135deg, #64c8ff 0%, #3a9fd8 100%);
+    color: #0a1628;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .cs-notify-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(100, 200, 255, 0.4);
+  }
+
+  /* Social Links */
+  .cs-social-links {
+    @apply flex justify-center;
+    gap: 1rem;
+  }
+
+  .cs-social-link {
+    @apply flex items-center justify-center rounded-full no-underline;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(232, 244, 248, 0.7);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cs-social-link:hover {
+    background: rgba(100, 200, 255, 0.2);
+    color: #64c8ff;
+    transform: translateY(-3px);
+    border-color: rgba(100, 200, 255, 0.3);
+  }
+
+  .cs-social-link i,
+  .cs-social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Footer */
+  .cs-footer {
+    @apply fixed bottom-0 left-0 w-full text-center;
+    padding: 1rem;
+    z-index: 2;
+    font-size: 0.75rem;
+    color: rgba(232, 244, 248, 0.3);
+  }
+
+  /* Responsive Coming Soon */
+  @media (max-width: 768px) {
+    .cs-title { font-size: 3rem; }
+    .cs-subtitle { font-size: 1rem; }
+    .cs-countdown-container { gap: 1rem; }
+    .cs-countdown-value { font-size: 2.5rem; }
+    .cs-countdown-box { min-width: 60px; }
+    .cs-countdown-separator { font-size: 2.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .cs-main-container { padding: 2rem 1.5rem; }
+    .cs-title { font-size: 2.5rem; }
+    .cs-countdown-container { gap: 0.75rem; }
+    .cs-countdown-value { font-size: 2rem; }
+    .cs-countdown-separator { font-size: 2rem; }
+    .cs-logo { width: 90px; }
+    .cs-input-group {
+      @apply flex-col;
+      border-radius: 12px;
+      padding: 0.5rem;
+    }
+    .cs-notify-btn { border-radius: 8px; }
+  }
+}

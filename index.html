@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEIC Season XIV</title>
+    <link rel="icon" type="image/png" href="assets/images/logo-notext.png">
+
+    <!-- Bundled CSS via Webpack + Tailwind -->
+    <link rel="stylesheet" href="dist/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&family=Public+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Temporary inline styles to see changes immediately */
+        body {
+            background-color: #F9F5EA !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Texture Overlay -->
+    <div class="paper-texture"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="brand">
+                <a href="index.html">
+                    <img src="assets/images/logo-notext.png" alt="CEIC Logo" class="nav-logo">
+                </a>
+            </div>
+
+            <div class="nav-center hidden-mobile">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="index.html#about" class="nav-link">ABOUT</a>
+                <a href="events.html" class="nav-link">EVENTS</a>
+            </div>
+
+            <div class="nav-right hidden-mobile">
+                <a href="#teaser" class="nav-link contact-link">TEASER</a>
+                <a href="register.html" class="btn-nav">REGISTER</a>
+            </div>
+
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i data-lucide="menu" class="text-dark"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="assets/images/logo-nobg.png" alt="Logo" style="height:40px;">
+            <i data-lucide="x" onclick="toggleMenu()" style="cursor:pointer;"></i>
+        </div>
+        <div class="mobile-links">
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="index.html#about" onclick="toggleMenu()">About</a>
+            <a href="events.html" onclick="toggleMenu()">Events</a>
+            <a href="#teaser" onclick="toggleMenu()">Teaser</a>
+            <a href="register.html" class="mobile-register-btn" onclick="toggleMenu()">Register Now</a>
+        </div>
+    </div>
+
+
+    <!-- Hero Section - Clean Professional Design -->
+    <section id="home" class="hero-section">
+        <!-- Abstract Wavy Background using SVG -->
+        <div class="hero-waves-container">
+            <!-- Back Layer - Sharp peaks -->
+            <svg class="wave-svg wave-layer-1" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path d="M0,900 L0,550 L200,650 L400,500 L600,620 L800,450 L1000,580 L1200,380 L1440,280 L1440,900 Z"
+                    fill="rgba(18, 40, 32, 0.65)" />
+            </svg>
+
+            <!-- Second Layer - Sharp peaks offset -->
+            <svg class="wave-svg wave-layer-2" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,650 L150,720 L350,580 L550,700 L750,530 L950,660 L1150,480 L1350,550 L1440,420 L1440,900 Z"
+                    fill="rgba(25, 55, 42, 0.55)" />
+            </svg>
+
+            <!-- Third Layer - More peaks -->
+            <svg class="wave-svg wave-layer-3" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,750 L100,800 L280,680 L450,780 L620,640 L800,750 L980,600 L1150,720 L1320,570 L1440,650 L1440,900 Z"
+                    fill="rgba(32, 65, 50, 0.45)" />
+            </svg>
+
+            <!-- Front Layer - Subtle accent -->
+            <svg class="wave-svg wave-layer-4" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,820 L180,870 L380,760 L580,850 L780,720 L980,830 L1180,700 L1380,800 L1440,740 L1440,900 Z"
+                    fill="rgba(40, 78, 60, 0.35)" />
+            </svg>
+        </div>
+
+        <div class="container hero-container">
+            <div class="hero-content-wrapper">
+                <!-- Left Content -->
+                <div class="hero-text-content fade-in">
+                    <div class="hero-badge">
+                        <span class="badge-icon">●</span>
+                        <span>Season XIV 2026</span>
+                    </div>
+
+                    <!-- Mobile Logo Container -->
+                    <div class="hero-logos-mobile">
+                        <img src="assets/images/logo-nobg.png" alt="CEIC Logo" class="mobile-logo-ceic">
+                        <img src="assets/images/logoundip.png" alt="Undip Logo" class="mobile-logo-undip">
+                    </div>
+
+                    <h1 class="hero-title font-rough">
+                        Building a<br>
+                        <span class="highlight-text">Sustainable</span><br>
+                        & Resilient<br>
+                        Future
+                    </h1>
+
+                    <p class="hero-description">
+                        Civil Engineering Innovation Contest - Developing digital transformation for net zero emissions
+                        and community impact through innovation.
+                    </p>
+
+                    <div class="hero-cta">
+                        <a href="#teaser" class="btn-primary">
+                            <span>Explore More</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <a href="register.html" class="btn-secondary btn-secondary-red">
+                            Register Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual Element -->
+                <div class="hero-visual fade-in delay-100">
+                    <div class="hero-illustration">
+                        <img src="assets/images/logo-nobg.png" alt="CEIC Logo" class="hero-logo-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section - BOLD REDESIGN -->
+    <section id="about" class="section core-values-section">
+        <!-- Decorative background elements -->
+        <div class="cv-bg-shapes">
+            <div class="cv-shape cv-shape-1"></div>
+            <div class="cv-shape cv-shape-2"></div>
+        </div>
+
+        <div class="container">
+            <!-- Asymmetric Header -->
+            <div class="cv-header fade-in">
+                <span class="cv-label font-script">What We Stand For</span>
+                <h2 class="cv-title font-rough">
+                    OUR CORE<br>
+                    <span class="cv-title-accent">VALUES</span>
+                </h2>
+                <p class="cv-subtitle">CEIC Season XIV focuses on three fundamental pillars that drive sustainable
+                    infrastructure.</p>
+            </div>
+
+            <!-- Detail Panel - NOW FIRST -->
+            <div class="cv-detail fade-in">
+                <div id="cv-content-inner">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+
+            <!-- 3D Stacked Cards - NOW BELOW -->
+            <div class="cv-cards fade-in">
+                <!-- Card 1 -->
+                <div class="cv-card cv-card-1" onclick="switchValue(0)">
+                    <div class="cv-card-number">01</div>
+                    <div class="cv-card-icon"><i data-lucide="cpu"></i></div>
+                    <h3 class="cv-card-title font-rough">Digital Transformation</h3>
+                    <p class="cv-card-desc">Integration of AI, IoT, and BIM for smarter infrastructure.</p>
+                    <div class="cv-card-arrow"><i data-lucide="arrow-right"></i></div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cv-card cv-card-2" onclick="switchValue(1)">
+                    <div class="cv-card-number">02</div>
+                    <div class="cv-card-icon"><i data-lucide="leaf"></i></div>
+                    <h3 class="cv-card-title font-rough">Net Zero Emission</h3>
+                    <p class="cv-card-desc">Target 2060: Low-carbon materials & renewable energy.</p>
+                    <div class="cv-card-arrow"><i data-lucide="arrow-right"></i></div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="cv-card cv-card-3" onclick="switchValue(2)">
+                    <div class="cv-card-number">03</div>
+                    <div class="cv-card-icon"><i data-lucide="users"></i></div>
+                    <h3 class="cv-card-title font-rough">Community Impact</h3>
+                    <p class="cv-card-desc">Improving access & enhancing public safety.</p>
+                    <div class="cv-card-arrow"><i data-lucide="arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser Video Section -->
+    <section id="teaser" class="teaser-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <div>
+                    <span class="font-script text-red text-2xl">Watch Our Story</span>
+                    <h2 class="font-rough text-green section-title">CEIC 2026 TEASER</h2>
+                    <p class="section-subtitle">Discover the journey of innovation, collaboration, and sustainability
+                    </p>
+                </div>
+            </div>
+
+            <div class="teaser-video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://drive.google.com/file/d/1UOmFdJuy_z0gSRUevEHiAWtw-HWrhDuy/preview"
+                        title="CEIC 2026 Teaser" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="teaser-description">
+                    <h3 class="font-head">Building Tomorrow's Infrastructure, Today</h3>
+                    <p>Join us in the most prestigious civil engineering competition in Indonesia. CEIC Season XIV
+                        brings together the brightest minds from across the nation to innovate, compete, and create
+                        sustainable solutions for our future.</p>
+                    <a href="register.html" class="btn-teaser">
+                        <i data-lucide="arrow-right"></i>
+                        Register Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section - Combined Stats and Gallery -->
+    <section id="past-events" class="section past-events-combined">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header mb-12 fade-in">
+                <div class="line-l"></div>
+                <div class="text-center">
+                    <span class="font-script text-red text-2xl">Our Journey</span>
+                    <h2 class="font-rough text-beige text-4xl mt-2">PAST EVENTS</h2>
+                </div>
+                <div class="line-r"></div>
+            </div>
+
+            <!-- Two Column Layout: Stats + Slider -->
+            <div class="past-events-content fade-in">
+                <!-- Left: Stats -->
+                <div class="past-events-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">10,000<span class="stat-plus">+</span></span>
+                        <span class="stat-label">Total Participants</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">600<span class="stat-plus">+</span></span>
+                        <span class="stat-label">Group Participants</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">250<span class="stat-plus">+</span></span>
+                        <span class="stat-label">Workshop Participants</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1,000<span class="stat-plus">+</span></span>
+                        <span class="stat-label">Expo Participants</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">3,000<span class="stat-plus">+</span></span>
+                        <span class="stat-label">Seminar Participants</span>
+                    </div>
+                </div>
+
+                <!-- Right: Image Slider -->
+                <div class="past-events-slider">
+                    <div class="slider-container">
+                        <div class="slider-wrapper" id="eventsSlider">
+                            <div class="event-slide active">
+                                <img src="assets/images/event1.JPG" alt="Past Event 1">
+                            </div>
+                            <div class="event-slide">
+                                <img src="assets/images/event2.JPG" alt="Past Event 2">
+                            </div>
+                            <div class="event-slide">
+                                <img src="assets/images/event3.JPG" alt="Past Event 3">
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button class="slider-arrow slider-prev" onclick="changeSlide(-1)" aria-label="Previous">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-next" onclick="changeSlide(1)" aria-label="Next">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Slider Dots -->
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="goToSlide(0)"></span>
+                        <span class="dot" onclick="goToSlide(1)"></span>
+                        <span class="dot" onclick="goToSlide(2)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sponsors Section - Coming Soon -->
+    <section id="sponsors" class="section sponsors-section">
+        <div class="container">
+            <div class="section-header mb-12 fade-in">
+                <div class="line-l"></div>
+                <div class="text-center">
+                    <span class="font-script text-red text-2xl">Supported By</span>
+                    <h2 class="font-rough text-beige text-4xl mt-2">OUR STRATEGIC PARTNERS</h2>
+                </div>
+                <div class="line-r"></div>
+            </div>
+
+            <div class="sponsors-coming-soon fade-in">
+                <h3 class="sponsors-soon-text font-rough text-beige">COMING SOON</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Past Participants Section (Improved) -->
+    <section id="participants" class="section participants-section">
+        <div class="container">
+            <div class="section-header mb-8 fade-in">
+                <div class="line-l"></div>
+                <div class="text-center">
+                    <span class="font-script text-red text-2xl">Past Participants</span>
+                    <h2 class="font-rough text-beige text-4xl mt-2">UNIVERSITIES ACROSS INDONESIA</h2>
+                </div>
+                <div class="line-r"></div>
+            </div>
+        </div>
+
+        <div class="participants-marquee">
+            <div class="marquee-track">
+
+                <div class="marquee-content">
+                    <!-- University logos (duplicated for seamless scroll) -->
+                    <img src="assets/images/past-participation/1.png" alt="Univ 1">
+                    <img src="assets/images/past-participation/2.png" alt="Univ 2">
+                    <img src="assets/images/past-participation/3.png" alt="Univ 3">
+                    <img src="assets/images/past-participation/4.png" alt="Univ 4">
+                    <img src="assets/images/past-participation/5.png" alt="Univ 5">
+                    <img src="assets/images/past-participation/6.png" alt="Univ 6">
+                    <img src="assets/images/past-participation/7.png" alt="Univ 7">
+                    <img src="assets/images/past-participation/8.png" alt="Univ 8">
+                    <img src="assets/images/past-participation/9.png" alt="Univ 9">
+                    <img src="assets/images/past-participation/10.png" alt="Univ 10">
+                    <img src="assets/images/past-participation/11.png" alt="Univ 11">
+                    <img src="assets/images/past-participation/12.png" alt="Univ 12">
+                    <img src="assets/images/past-participation/13.png" alt="Univ 13">
+                    <img src="assets/images/past-participation/14.png" alt="Univ 14">
+                    <img src="assets/images/past-participation/15.png" alt="Univ 15">
+                    <img src="assets/images/past-participation/16.png" alt="Univ 16">
+                    <img src="assets/images/past-participation/17.png" alt="Univ 17">
+                    <img src="assets/images/past-participation/18.png" alt="Univ 18">
+                    <img src="assets/images/past-participation/19.png" alt="Univ 19">
+                    <img src="assets/images/past-participation/20.png" alt="Univ 20">
+                    <img src="assets/images/past-participation/21.png" alt="Univ 21">
+                    <img src="assets/images/past-participation/22.png" alt="Univ 22">
+                    <img src="assets/images/past-participation/23.png" alt="Univ 23">
+                    <img src="assets/images/past-participation/24.png" alt="Univ 24">
+                    <img src="assets/images/past-participation/25.png" alt="Univ 25">
+                    <img src="assets/images/past-participation/26.png" alt="Univ 26">
+                    <img src="assets/images/past-participation/27.png" alt="Univ 27">
+                    <img src="assets/images/past-participation/28.png" alt="Univ 28">
+
+                    <!-- Duplicated for seamless scroll -->
+                    <img src="assets/images/past-participation/1.png" alt="Univ 1">
+                    <img src="assets/images/past-participation/2.png" alt="Univ 2">
+                    <img src="assets/images/past-participation/3.png" alt="Univ 3">
+                    <img src="assets/images/past-participation/4.png" alt="Univ 4">
+                    <img src="assets/images/past-participation/5.png" alt="Univ 5">
+                    <img src="assets/images/past-participation/6.png" alt="Univ 6">
+                    <img src="assets/images/past-participation/7.png" alt="Univ 7">
+                    <img src="assets/images/past-participation/8.png" alt="Univ 8">
+                    <img src="assets/images/past-participation/9.png" alt="Univ 9">
+                    <img src="assets/images/past-participation/10.png" alt="Univ 10">
+                    <img src="assets/images/past-participation/11.png" alt="Univ 11">
+                    <img src="assets/images/past-participation/12.png" alt="Univ 12">
+                    <img src="assets/images/past-participation/13.png" alt="Univ 13">
+                    <img src="assets/images/past-participation/14.png" alt="Univ 14">
+                    <img src="assets/images/past-participation/15.png" alt="Univ 15">
+                    <img src="assets/images/past-participation/16.png" alt="Univ 16">
+                    <img src="assets/images/past-participation/17.png" alt="Univ 17">
+                    <img src="assets/images/past-participation/18.png" alt="Univ 18">
+                    <img src="assets/images/past-participation/19.png" alt="Univ 19">
+                    <img src="assets/images/past-participation/20.png" alt="Univ 20">
+                    <img src="assets/images/past-participation/21.png" alt="Univ 21">
+                    <img src="assets/images/past-participation/22.png" alt="Univ 22">
+                    <img src="assets/images/past-participation/23.png" alt="Univ 23">
+                    <img src="assets/images/past-participation/24.png" alt="Univ 24">
+                    <img src="assets/images/past-participation/25.png" alt="Univ 25">
+                    <img src="assets/images/past-participation/26.png" alt="Univ 26">
+                    <img src="assets/images/past-participation/27.png" alt="Univ 27">
+                    <img src="assets/images/past-participation/28.png" alt="Univ 28">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer-modern">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand-col">
+                    <img src="assets/images/logo-nobg.png" alt="CEIC Logo" class="footer-logo">
+                    <h3 class="footer-brand-title font-rough">CEIC Season XIV</h3>
+                    <p class="footer-brand-desc">Building a Sustainable and Resilient Infrastructure: Developing Digital
+                        Transformation for Net Zero Emissions and Community Impact.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>ceicseasonxiv@gmail.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>08112588331</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Civil Engineering Building, Diponegoro University, Semarang 50275</span>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer-social-col">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/ceic_undip" target="_blank" class="social-btn">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@ceicundipxiv?is_from_webapp=1&sender_device=pc" target="_blank"
+                            class="social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-social-text">@ceic_undip | @ceicundipxiv</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="dist/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add subtle parallax effect to hero
+            window.addEventListener('scroll', function () {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-section');
+                const logo = document.querySelector('.floating-logo');
+
+                if (hero) {
+                    hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+                }
+
+                if (logo) {
+                    logo.style.transform = `translate(-50%, -50%) rotate(${scrolled * 0.1}deg)`;
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

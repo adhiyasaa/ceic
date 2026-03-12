@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - CEIC Season XIV</title>
+    <link rel="icon" type="image/png" href="assets/images/logo-notext.png">
+
+    <!-- Bundled CSS via Webpack + Tailwind -->
+    <link rel="stylesheet" href="dist/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&family=Public+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Texture Overlay -->
+    <div class="paper-texture"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="brand">
+                <a href="index.html">
+                    <img src="assets/images/logo-notext.png" alt="CEIC Logo" class="nav-logo">
+                </a>
+            </div>
+
+            <div class="nav-center hidden-mobile">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="index.html#about" class="nav-link">ABOUT</a>
+                <a href="events.html" class="nav-link active">EVENTS</a>
+            </div>
+
+            <div class="nav-right hidden-mobile">
+                <a href="index.html#teaser" class="nav-link contact-link">TEASER</a>
+                <a href="register.html" class="btn-nav">REGISTER</a>
+            </div>
+
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i data-lucide="menu" class="text-dark"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="assets/images/logo-nobg.png" alt="Logo" style="height:40px;">
+            <i data-lucide="x" onclick="toggleMenu()" style="cursor:pointer;"></i>
+        </div>
+        <div class="mobile-links">
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="index.html#about" onclick="toggleMenu()">About</a>
+            <a href="events.html" onclick="toggleMenu()">Events</a>
+            <a href="index.html#teaser" onclick="toggleMenu()">Teaser</a>
+            <a href="register.html" class="mobile-register-btn" onclick="toggleMenu()">Register Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="events-hero">
+        <div class="container text-center">
+            <span class="font-script text-red text-2xl">CEIC Season XIV</span>
+            <h1 class="font-rough text-cream events-hero-title">EVENTS & COMPETITIONS</h1>
+            <p class="font-body text-cream opacity-80 mt-4">Explore our international competitions and national events
+            </p>
+        </div>
+    </section>
+
+    <!-- Event Type Tabs & Navigation Combined -->
+    <section class="events-tabs-section">
+        <div class="container">
+            <div class="events-unified-nav">
+                <!-- Event Type Tabs -->
+                <div class="events-type-tabs">
+                    <button class="event-type-tab active" onclick="showEventType('competitions')">
+                        <i data-lucide="trophy"></i>
+                        <span>Competitions</span>
+                    </button>
+                    <button class="event-type-tab" onclick="showEventType('main-events')">
+                        <i data-lucide="calendar"></i>
+                        <span>Main Events</span>
+                    </button>
+                </div>
+
+                <!-- Event Navigation -->
+                <div class="event-nav" id="competitions-nav">
+                    <button class="event-nav-btn active" onclick="showEvent('ibdc')">IBDC</button>
+                    <button class="event-nav-btn" onclick="showEvent('ibic')">IBIC</button>
+                    <button class="event-nav-btn" onclick="showEvent('idic')">IDIC</button>
+                    <button class="event-nav-btn" onclick="showEvent('ipic')">IPIC</button>
+                </div>
+
+                <!-- Main Events Navigation (hidden initially) -->
+                <div class="event-nav" id="main-events-nav" style="display: none;">
+                    <button class="event-nav-btn active" onclick="showMainEvent('semnas')">SEMNAS</button>
+                    <button class="event-nav-btn" onclick="showMainEvent('bimworkshop')">BIM Workshop</button>
+                    <button class="event-nav-btn" onclick="showMainEvent('compex')">COMPEX</button>
+                    <button class="event-nav-btn" onclick="showMainEvent('webinar')">Webinar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="competitions" class="events-content-section">
+        <!-- Spike Wave Background -->
+        <div class="events-waves-container">
+            <!-- Back Layer -->
+            <svg class="events-wave-svg events-wave-1" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,750 L120,820 L240,700 L360,780 L480,650 L600,730 L720,600 L840,680 L960,550 L1080,640 L1200,500 L1320,590 L1440,450 L1440,900 Z"
+                    fill="rgba(18, 40, 32, 0.3)" />
+            </svg>
+
+            <!-- Middle Layer -->
+            <svg class="events-wave-svg events-wave-2" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,800 L100,850 L220,750 L340,830 L460,720 L580,800 L700,680 L820,770 L940,640 L1060,730 L1180,600 L1300,700 L1440,580 L1440,900 Z"
+                    fill="rgba(25, 55, 42, 0.25)" />
+            </svg>
+
+            <!-- Front Layer -->
+            <svg class="events-wave-svg events-wave-3" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,850 L150,880 L300,800 L450,860 L600,780 L750,850 L900,760 L1050,840 L1200,750 L1350,820 L1440,770 L1440,900 Z"
+                    fill="rgba(32, 65, 50, 0.2)" />
+            </svg>
+        </div>
+
+        <div class="container">
+
+            <!-- IBDC -->
+            <div id="event-ibdc" class="event-detail active">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">International Bridge Design Competition</h2>
+                </div>
+
+                <!-- Prizes at Top -->
+                <div class="event-card prizes-top-card">
+                    <div class="event-card-header">
+                        <i data-lucide="award"></i>
+                        <h3>Prizes</h3>
+                    </div>
+                    <div class="prizes-grid prizes-horizontal">
+                        <div class="prize-item gold">
+                            <span class="prize-rank">1st</span>
+                            <span class="prize-amount">Rp 11.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item silver">
+                            <span class="prize-rank">2nd</span>
+                            <span class="prize-amount">Rp 7.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item bronze">
+                            <span class="prize-rank">3rd</span>
+                            <span class="prize-amount">Rp 4.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable I</span>
+                            <span class="prize-amount">Rp 1.500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable II</span>
+                            <span class="prize-amount">Rp 1.000.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item favorite">
+                            <span class="prize-rank">Favorite</span>
+                            <span class="prize-amount">Rp 500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout: Timeline Left, About/Theme Right -->
+                <div class="event-split-layout">
+                    <!-- Timeline on Left (Compact) -->
+                    <div class="timeline-column">
+                        <div class="timeline-section compact">
+                            <h3 class="timeline-title font-rough">Timeline</h3>
+                            <div class="visual-timeline compact-timeline">
+                                <div class="timeline-line"></div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>1st Batch Registration</h4>
+                                        <span>12 - 24 January 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>2nd Batch Registration</h4>
+                                        <span>25 January - 24 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Study Case Release</h4>
+                                        <span>25 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Preliminary Technical Meeting</h4>
+                                        <span>26 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Proposal Submission</h4>
+                                        <span>27 March 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Announcement & Final TOR Release</h4>
+                                        <span>18 April 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Technical Meeting</h4>
+                                        <span>19 April 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Bridge Fabrication</h4>
+                                        <span>19 April - 20 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Video & Poster Submission</h4>
+                                        <span>15 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>PPT Submission</h4>
+                                        <span>20 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Bridge Assembly and Load Testing</h4>
+                                        <span>21 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Final Presentation</h4>
+                                        <span>22 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Awarding</h4>
+                                        <span>23 May 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About & Theme on Right -->
+                    <div class="info-column">
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="info"></i>
+                                <h3>About</h3>
+                            </div>
+                            <p>Bridge infrastructure plays a crucial role in improving accessibility, connectivity, and
+                                driving economic growth, especially in remote areas. As demands and challenges in bridge
+                                construction continue to grow, innovative solutions that utilize technological
+                                advancements
+                                are needed. IBDC encourages participants to design lightweight bridges that can be
+                                rapidly
+                                planned, digitally based, and aligned with Net Zero Emission targets. Through this
+                                competition, participants are trained to create intelligent, disaster-resilient bridges
+                                that
+                                adhere to the principles of sustainable development.</p>
+                        </div>
+
+                        <div class="event-card theme-card">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Sustainable Bridge Innovation for Remote Areas: Light Bridge Rapidly
+                                Designed and Digital-Based Design for Net Zero Emissions"</p>
+                        </div>
+
+                        <!-- Contact Person -->
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="phone"></i>
+                                <h3>Contact Person</h3>
+                            </div>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <strong>Aqil</strong>
+                                    <p>WhatsApp: 081211678384</p>
+                                    <p>LINE: @ghalibbenardigk</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Akbar</strong>
+                                    <p>WhatsApp: 081211412708</p>
+                                    <p>LINE: @akbarrmdh_</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downloads Section -->
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="download"></i>
+                                <h3>Downloads</h3>
+                            </div>
+                            <p class="mb-4">Get the complete guidebook and registration forms here.</p>
+                            <a href="https://drive.google.com/drive/folders/1KtYrcem_B9fqfyWPsOoRrhdAGpwIfDoQ"
+                                target="_blank" class="btn-register w-full text-center">
+                                <i data-lucide="file-text" class="inline-block w-4 h-4 mr-2"></i>
+                                Download Guidebook
+                            </a>
+                        </div>
+
+                        <!-- Hashtag Section -->
+                        <div class="event-card hashtag-card">
+                            <div class="event-card-header">
+                                <i data-lucide="hash"></i>
+                                <h3>REGISTER</h3>
+                            </div>
+                            <div class="hashtag-list">
+                                <span class="hashtag">#BridgingIdeasWithCEIC</span>
+                                <span class="hashtag">#ResiliencyTowardsSafety</span>
+                                <span class="hashtag">#GoodBridgeGoodFuture</span>
+                                <span class="hashtag">#CEICSeasonXIV</span>
+                                <span class="hashtag">#CEICUndip2026</span>
+                                <span class="hashtag">#CivilEngineeringInnovationContest</span>
+                                <span class="hashtag">#InnovatingTechnologyWithNetZeroEmission</span>
+                            </div>
+                            <a href="register.html" class="btn-register hashtag-register-btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IBIC -->
+            <div id="event-ibic" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">International BIM Innovation Competition</h2>
+                </div>
+
+                <!-- Prizes at Top -->
+                <div class="event-card prizes-top-card">
+                    <div class="event-card-header">
+                        <i data-lucide="award"></i>
+                        <h3>Prizes</h3>
+                    </div>
+                    <div class="prizes-grid prizes-horizontal">
+                        <div class="prize-item gold">
+                            <span class="prize-rank">1st</span>
+                            <span class="prize-amount">Rp 10.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item silver">
+                            <span class="prize-rank">2nd</span>
+                            <span class="prize-amount">Rp 6.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item bronze">
+                            <span class="prize-rank">3rd</span>
+                            <span class="prize-amount">Rp 4.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable I</span>
+                            <span class="prize-amount">Rp 1.500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable II</span>
+                            <span class="prize-amount">Rp 1.000.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item favorite">
+                            <span class="prize-rank">Favorite</span>
+                            <span class="prize-amount">Rp 500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="event-split-layout">
+                    <!-- Timeline on Left -->
+                    <div class="timeline-column">
+                        <div class="timeline-section compact">
+                            <h3 class="timeline-title font-rough">Timeline</h3>
+                            <div class="visual-timeline compact-timeline">
+                                <div class="timeline-line"></div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>1st Batch Registration</h4>
+                                        <span>12 - 24 January 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>2nd Batch Registration</h4>
+                                        <span>25 January - 24 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Study Case Release</h4>
+                                        <span>25 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Preliminary Technical Meeting</h4>
+                                        <span>26 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Proposal Submission</h4>
+                                        <span>31 March 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Announcement & Final TOR Release</h4>
+                                        <span>3 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Technical Meeting</h4>
+                                        <span>4 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Video & Poster Submission</h4>
+                                        <span>15 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>PPT Submission</h4>
+                                        <span>20 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Final Presentation</h4>
+                                        <span>22 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Awarding</h4>
+                                        <span>23 May 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About & Theme on Right -->
+                    <div class="info-column">
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="info"></i>
+                                <h3>About</h3>
+                            </div>
+                            <p>One of the major challenges in achieving the Sustainable Development Goals (SDGs) is
+                                developing infrastructure that is effective, efficient, and remains sustainable for the
+                                future. Building Information Modeling (BIM) provides significant opportunities to
+                                enhance
+                                the quality of planning and designing infrastructure projects. IBIC aims to improve
+                                students' understanding and skills in optimizing BIM to support zero-emission targets
+                                and to
+                                design sustainable public buildings that create a positive impact on communities.</p>
+                        </div>
+
+                        <div class="event-card theme-card">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Optimizing BIM to Achieve Zero Emission Goals: Designing Sustainable
+                                Public Buildings for Community Impact"</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="phone"></i>
+                                <h3>Contact Person</h3>
+                            </div>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <strong>Iqbal</strong>
+                                    <p>WhatsApp: +62 857-2913-0329</p>
+                                    <p>LINE: brillianiqball</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Nisa</strong>
+                                    <p>WhatsApp: +62 895-4288-47269</p>
+                                    <p>LINE: oktavianiii17</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downloads Section -->
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="download"></i>
+                                <h3>Downloads</h3>
+                            </div>
+                            <p class="mb-4">Get the complete guidebook and registration forms here.</p>
+                            <a href="https://drive.google.com/drive/folders/1YbBwODT5nuLIF1NKkdL7Ka9d3_BfgOnl"
+                                target="_blank" class="btn-register w-full text-center">
+                                <i data-lucide="file-text" class="inline-block w-4 h-4 mr-2"></i>
+                                Download Guidebook
+                            </a>
+                        </div>
+
+                        <!-- Hashtag Section - IBIC -->
+                        <div class="event-card hashtag-card">
+                            <div class="event-card-header">
+                                <i data-lucide="hash"></i>
+                                <h3>REGISTER</h3>
+                            </div>
+                            <div class="hashtag-list">
+                                <span class="hashtag">#NetZeroBuildingswithBIM</span>
+                                <span class="hashtag">#BIMforSustainableBuildings</span>
+                                <span class="hashtag">#GoodBIMGoodFuture</span>
+                                <span class="hashtag">#CEICSeasonXIV</span>
+                                <span class="hashtag">#CEICUndip2026</span>
+                                <span class="hashtag">#CivilEngineeringInnovationContest</span>
+                                <span class="hashtag">#InnovatingTechnologyWithNetZeroEmission</span>
+                            </div>
+                            <a href="register.html" class="btn-register hashtag-register-btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IDIC -->
+            <div id="event-idic" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">International Dam Innovation Competition</h2>
+                </div>
+
+                <!-- Prizes at Top -->
+                <div class="event-card prizes-top-card">
+                    <div class="event-card-header">
+                        <i data-lucide="award"></i>
+                        <h3>Prizes</h3>
+                    </div>
+                    <div class="prizes-grid prizes-horizontal">
+                        <div class="prize-item gold">
+                            <span class="prize-rank">1st</span>
+                            <span class="prize-amount">Rp 10.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item silver">
+                            <span class="prize-rank">2nd</span>
+                            <span class="prize-amount">Rp 6.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item bronze">
+                            <span class="prize-rank">3rd</span>
+                            <span class="prize-amount">Rp 4.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable I</span>
+                            <span class="prize-amount">Rp 1.500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable II</span>
+                            <span class="prize-amount">Rp 1.000.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item favorite">
+                            <span class="prize-rank">Favorite</span>
+                            <span class="prize-amount">Rp 500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="event-split-layout">
+                    <!-- Timeline on Left -->
+                    <div class="timeline-column">
+                        <div class="timeline-section compact">
+                            <h3 class="timeline-title font-rough">Timeline</h3>
+                            <div class="visual-timeline compact-timeline">
+                                <div class="timeline-line"></div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>1st Batch Registration</h4>
+                                        <span>12 - 24 January 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>2nd Batch Registration</h4>
+                                        <span>25 January - 24 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Study Case Release</h4>
+                                        <span>25 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Preliminary Technical Meeting</h4>
+                                        <span>26 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Proposal Submission</h4>
+                                        <span>31 March 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Announcement & Final TOR Release</h4>
+                                        <span>3 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Technical Meeting</h4>
+                                        <span>4 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Video & Poster Submission</h4>
+                                        <span>15 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>PPT Submission</h4>
+                                        <span>20 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Final Presentation</h4>
+                                        <span>22 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Awarding</h4>
+                                        <span>23 May 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About & Theme on Right -->
+                    <div class="info-column">
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="info"></i>
+                                <h3>About</h3>
+                            </div>
+                            <p>The increasing global environmental challenges require innovations that support
+                                sustainability and resilience in water infrastructure. IDIC invites students to create
+                                transformational ideas in dam design, digital water management, flood mitigation, and
+                                the
+                                use of environmentally friendly materials. This competition motivates participants to
+                                develop water resource infrastructure that is resilient and sustainable for the future.
+                            </p>
+                        </div>
+
+                        <div class="event-card theme-card">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Digitalization Water Systems Through Dam Transformation to Achieve
+                                Net
+                                Zero Emissions, Local Economic Empowerment, and Community Resilience"</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="phone"></i>
+                                <h3>Contact Person</h3>
+                            </div>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <strong>Azmi</strong>
+                                    <p>WhatsApp: +62 896-0428-8431</p>
+                                    <p>LINE: azmitazky</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Talitha</strong>
+                                    <p>WhatsApp: +62 888-0275-0543</p>
+                                    <p>LINE: talitha.shafi</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downloads Section -->
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="download"></i>
+                                <h3>Downloads</h3>
+                            </div>
+                            <p class="mb-4">Get the complete guidebook and registration forms here.</p>
+                            <a href="https://drive.google.com/drive/folders/1z-lpsHFCE9VxQwqR1zXaXGiMuH9hDfND"
+                                target="_blank" class="btn-register w-full text-center">
+                                <i data-lucide="file-text" class="inline-block w-4 h-4 mr-2"></i>
+                                Download Guidebook
+                            </a>
+                        </div>
+
+                        <!-- Hashtag Section - IDIC -->
+                        <div class="event-card hashtag-card">
+                            <div class="event-card-header">
+                                <i data-lucide="hash"></i>
+                                <h3>REGISTER</h3>
+                            </div>
+                            <div class="hashtag-list">
+                                <span class="hashtag">#SmartDamTransformation</span>
+                                <span class="hashtag">#TransformingDamsForFuture</span>
+                                <span class="hashtag">#GoodDamsGoodFuture</span>
+                                <span class="hashtag">#CEICSeasonXIV</span>
+                                <span class="hashtag">#CEICUndip2026</span>
+                                <span class="hashtag">#CivilEngineeringInnovationContest</span>
+                                <span class="hashtag">#InnovatingTechnologyWithNetZeroEmission</span>
+                            </div>
+                            <a href="register.html" class="btn-register hashtag-register-btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IPIC -->
+            <div id="event-ipic" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">International Paper Innovation Competition</h2>
+                </div>
+
+                <!-- Prizes at Top -->
+                <div class="event-card prizes-top-card">
+                    <div class="event-card-header">
+                        <i data-lucide="award"></i>
+                        <h3>Prizes</h3>
+                    </div>
+                    <div class="prizes-grid prizes-horizontal">
+                        <div class="prize-item gold">
+                            <span class="prize-rank">1st</span>
+                            <span class="prize-amount">Rp 7.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item silver">
+                            <span class="prize-rank">2nd</span>
+                            <span class="prize-amount">Rp 5.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item bronze">
+                            <span class="prize-rank">3rd</span>
+                            <span class="prize-amount">Rp 3.000.000</span>
+                            <span class="prize-extras">+ Trophy + Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable I</span>
+                            <span class="prize-amount">Rp 1.500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item honorable">
+                            <span class="prize-rank">Honorable II</span>
+                            <span class="prize-amount">Rp 1.000.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                        <div class="prize-item favorite">
+                            <span class="prize-rank">Favorite</span>
+                            <span class="prize-amount">Rp 500.000</span>
+                            <span class="prize-extras">+ Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="event-split-layout">
+                    <!-- Timeline on Left -->
+                    <div class="timeline-column">
+                        <div class="timeline-section compact">
+                            <h3 class="timeline-title font-rough">Timeline</h3>
+                            <div class="visual-timeline compact-timeline">
+                                <div class="timeline-line"></div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Registration & Abstract Submission</h4>
+                                        <span>12 January - 13 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Accepted Abstract Announcement</h4>
+                                        <span>28 February 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>1st Batch Re-registration</h4>
+                                        <span>28 February - 4 March 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>2nd Batch Re-registration</h4>
+                                        <span>5 March - 13 March 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Full Paper Submission</h4>
+                                        <span>4 April 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Announcement</h4>
+                                        <span>3 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Finalist Technical Meeting</h4>
+                                        <span>4 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Video & Infographic Submission</h4>
+                                        <span>15 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>PPT Submission</h4>
+                                        <span>20 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Final Presentation</h4>
+                                        <span>22 May 2026</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item-compact">
+                                    <div class="timeline-dot-compact"></div>
+                                    <div class="timeline-card-compact green">
+                                        <h4>Awarding</h4>
+                                        <span>23 May 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About & Theme on Right -->
+                    <div class="info-column">
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="info"></i>
+                                <h3>About</h3>
+                            </div>
+                            <p>The growing challenges of global infrastructure demand progressive, bold, and sustainable
+                                ideas. IPIC invites students to develop innovative thinking in civil engineering,
+                                covering
+                                intelligent IoT-based systems, environmentally friendly materials, green mobility, water
+                                management innovations, and advanced foundation technologies. This competition
+                                encourages
+                                participants to present ideas that are not only innovative but also sustainable and
+                                capable
+                                of contributing meaningfully to community well-being.</p>
+                        </div>
+
+                        <div class="event-card theme-card">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Constructing Innovative Ideas with Sustainability and Net-Zero
+                                Emission
+                                Approach Towards Impactful Solutions for Community Betterment"</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="phone"></i>
+                                <h3>Contact Person</h3>
+                            </div>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <strong>Ulva</strong>
+                                    <p>WhatsApp: 081915215126</p>
+                                    <p>LINE: anindyaawn</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Cinta</strong>
+                                    <p>WhatsApp: 085742661832</p>
+                                    <p>LINE: cintaaanurma_</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downloads Section -->
+                        <div class="event-card">
+                            <div class="event-card-header">
+                                <i data-lucide="download"></i>
+                                <h3>Downloads</h3>
+                            </div>
+                            <p class="mb-4">Get the complete guidebook and registration forms here.</p>
+                            <a href="https://drive.google.com/drive/folders/1coDxrCh5xKdX4qChrRx_q4bEw5SUPNxa"
+                                target="_blank" class="btn-register w-full text-center">
+                                <i data-lucide="file-text" class="inline-block w-4 h-4 mr-2"></i>
+                                Download Guidebook
+                            </a>
+                        </div>
+
+                        <!-- Hashtag Section - IPIC -->
+                        <div class="event-card hashtag-card">
+                            <div class="event-card-header">
+                                <i data-lucide="hash"></i>
+                                <h3>REGISTER</h3>
+                            </div>
+                            <div class="hashtag-list">
+                                <span class="hashtag">#InnovatingWithIPIC</span>
+                                <span class="hashtag">#SustainabilityTowardsNetZero</span>
+                                <span class="hashtag">#GoodInnovationGoodFuture</span>
+                                <span class="hashtag">#CEICSeasonXIV</span>
+                                <span class="hashtag">#CEICUndip2026</span>
+                                <span class="hashtag">#CivilEngineeringInnovationContest</span>
+                                <span class="hashtag">#InnovatingTechnologyWithNetZeroEmission</span>
+                            </div>
+                            <a href="register.html" class="btn-register hashtag-register-btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Main Events Section -->
+    <section id="main-events" class="events-content-section" style="display: none;">
+        <!-- Spike Wave Background -->
+        <div class="events-waves-container">
+            <!-- Back Layer -->
+            <svg class="events-wave-svg events-wave-1" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,750 L120,820 L240,700 L360,780 L480,650 L600,730 L720,600 L840,680 L960,550 L1080,640 L1200,500 L1320,590 L1440,450 L1440,900 Z"
+                    fill="rgba(18, 40, 32, 0.3)" />
+            </svg>
+
+            <!-- Middle Layer -->
+            <svg class="events-wave-svg events-wave-2" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,800 L100,850 L220,750 L340,830 L460,720 L580,800 L700,680 L820,770 L940,640 L1060,730 L1180,600 L1300,700 L1440,580 L1440,900 Z"
+                    fill="rgba(25, 55, 42, 0.25)" />
+            </svg>
+
+            <!-- Front Layer -->
+            <svg class="events-wave-svg events-wave-3" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path
+                    d="M0,900 L0,850 L150,880 L300,800 L450,860 L600,780 L750,850 L900,760 L1050,840 L1200,750 L1350,820 L1440,770 L1440,900 Z"
+                    fill="rgba(32, 65, 50, 0.2)" />
+            </svg>
+        </div>
+
+        <div class="container">
+
+            <!-- SEMNAS -->
+            <div id="main-event-semnas" class="event-detail active">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">National Seminar</h2>
+                </div>
+
+                <!-- Speakers Banner -->
+                <div class="speakers-banner">
+                    <div class="speakers-container">
+                        <img src="assets/images/speaker.png" alt="Speakers Coming Soon" class="speaker-image">
+                        <p class="speaker-label">Speaker</p>
+                    </div>
+                </div>
+
+                <div class="event-content-grid">
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="info"></i>
+                            <h3>About</h3>
+                        </div>
+                        <p>National Seminar brings together researchers, practitioners, students, and stakeholders to
+                            discuss key issues in sustainability, digital transformation, and resilient development
+                            toward net-zero goals and positive community impact. Through these discussions, the seminar
+                            offers forward-looking insights to guide the future of Indonesia's infrastructure. In CEIC
+                            Season XIV, the seminar will be made more interactive through a talk show with a prominent
+                            influencer, enriching the discourse and providing broader inspiration for the public.</p>
+                    </div>
+
+                    <div class="event-card theme-card">
+                        <div class="event-card-header">
+                            <i data-lucide="lightbulb"></i>
+                            <h3>Theme</h3>
+                        </div>
+                        <p class="theme-text">"Igniting Transformative Innovation: Enhancing Infrastructure Resilience
+                            through a Sustainable and Collaborative Blueprint for Communities Empowerment"</p>
+                    </div>
+                </div>
+
+                <div class="event-card venue-details-card">
+                    <div class="event-card-header">
+                        <i data-lucide="map-pin"></i>
+                        <h3>Schedule & Venue Details</h3>
+                    </div>
+                    <div class="venue-layout">
+                        <!-- Left: Venue Image (Clickable to Google Maps) -->
+                        <div class="venue-media">
+                            <a href="https://maps.app.goo.gl/2zu98BoBs77jSLd76" target="_blank"
+                                class="venue-image-link">
+                                <img src="assets/images/venue.png"
+                                    alt="Prof. Soedarto S.H. Hall - Click to view on Google Maps">
+                                <div class="venue-overlay">
+                                    <i data-lucide="map-pin"></i>
+                                    <span>View on Google Maps</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Right: Schedule Info -->
+                        <div class="venue-info">
+                            <div class="schedule-details">
+                                <div class="schedule-item">
+                                    <i data-lucide="calendar"></i>
+                                    <div>
+                                        <strong>Date</strong>
+                                        <p>Saturday, 23rd of May 2026</p>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <i data-lucide="clock"></i>
+                                    <div>
+                                        <strong>Time</strong>
+                                        <p>07:30 AM</p>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <i data-lucide="map-pin"></i>
+                                    <div>
+                                        <strong>Venue</strong>
+                                        <p>Prof. Soedarto S.H. Hall, Tembalang, Semarang, 50275</p>
+                                        <a href="https://maps.app.goo.gl/2zu98BoBs77jSLd76" target="_blank"
+                                            class="venue-link">
+                                            <i data-lucide="external-link"></i> View on Google Maps
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card register-card centered-register">
+                    <a href="register.html" class="btn-register">
+                        <i data-lucide="user-plus"></i>
+                        REGISTER NOW
+                    </a>
+                </div>
+            </div>
+
+            <!-- BIM Workshop -->
+            <div id="main-event-bimworkshop" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">Building Information Modeling Workshop</h2>
+                </div>
+
+                <div class="event-content-grid">
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="info"></i>
+                            <h3>About</h3>
+                        </div>
+                        <p>BIM Workshop equips participants with essential knowledge of Building Information Modeling
+                            (BIM) as a core component of digital construction. Beyond modeling, BIM serves as an
+                            integrated system that enhances collaboration and efficiency across project stages.
+                            Participants will gain hands-on experience with BIM and understand its importance in digital
+                            transformation, net-zero efforts, and sustainable, resilient infrastructure development.</p>
+                    </div>
+
+                    <div class="event-column-right">
+                        <div class="event-card theme-card compact-theme">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Driving Sustainable Construction with BIM Toward Net Zero Emissions"
+                            </p>
+                        </div>
+
+                        <div class="event-card compact-timeline">
+                            <div class="event-card-header">
+                                <i data-lucide="calendar-days"></i>
+                                <h3>Timeline</h3>
+                            </div>
+                            <p class="highlight-date">25th - 26th of April 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card register-card centered-register">
+                    <a href="register.html" class="btn-register">
+                        <i data-lucide="user-plus"></i>
+                        REGISTER NOW
+                    </a>
+                </div>
+            </div>
+
+            <!-- COMPEX -->
+            <div id="main-event-compex" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">Company Expo</h2>
+                </div>
+
+                <div class="event-content-grid">
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="info"></i>
+                            <h3>About</h3>
+                        </div>
+                        <p>Company Expo serves as a strategic platform that brings together diverse enterprises,
+                            especially in civil engineering. It introduces companies to participants and the public by
+                            showcasing their role in digital transformation, resilient development, and net-zero
+                            efforts, while also opening employment opportunities for attendees. The Expo also features a
+                            creative bazaar for UMKM, enriching the participant experience and strengthening the
+                            creative economy through improved visibility and branding for local businesses.</p>
+                    </div>
+
+                    <div class="event-column-right">
+                        <div class="event-card theme-card compact-theme">
+                            <div class="event-card-header">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Theme</h3>
+                            </div>
+                            <p class="theme-text">"Synergy for Sustainable Future and Community Impact"</p>
+                        </div>
+
+                        <div class="event-card compact-timeline">
+                            <div class="event-card-header">
+                                <i data-lucide="calendar-days"></i>
+                                <h3>Timeline</h3>
+                            </div>
+                            <p class="highlight-date">23rd of May 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card register-card centered-register">
+                    <a href="register.html" class="btn-register">
+                        <i data-lucide="user-plus"></i>
+                        REGISTER NOW
+                    </a>
+                </div>
+            </div>
+
+            <div id="main-event-webinar" class="event-detail">
+                <div class="event-header">
+                    <h2 class="font-rough text-beige event-title">Webinar SKK Konstruksi Jenjang 6</h2>
+                </div>
+
+                <!-- Poster Banner (Clickable to enlarge) -->
+                <div class="speakers-banner" style="margin-bottom: 2rem;">
+                    <div class="speakers-container" style="max-width: 800px; margin: 0 auto;">
+                        <img src="assets/images/poster-webinar.png" alt="Poster Webinar" class="speaker-image"
+                            style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s ease;"
+                            onclick="openPosterLightbox(this.src)" title="Klik untuk memperbesar">
+                    </div>
+                </div>
+
+                <div class="info-column"
+                    style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- About -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="info"></i>
+                            <h3>About</h3>
+                        </div>
+                        <p>This webinar is a manifestation of the strategic synergy between CEIC and IKATEKSI, aimed at
+                            equipping final-year students and fresh graduates to face competition in the construction
+                            industry
+                            through preparation for Work Competency Certification. Furthermore, this webinar also aims
+                            to
+                            provide a platform and opportunity for SKK certification holders to earn SKPK points from
+                            LPJK.
+                            Designed as a preparatory session led by professionals, this event bridges the industry's
+                            need for
+                            professionals by enabling participants to understand the importance of PKB and access
+                            credible
+                            certification.</p>
+                    </div>
+
+                    <!-- Theme -->
+                    <div class="event-card theme-card">
+                        <div class="event-card-header">
+                            <i data-lucide="lightbulb"></i>
+                            <h3>Theme</h3>
+                        </div>
+                        <p class="theme-text">"Bridging the Gap: Transisi dari Mahasiswa menjadi Profesional
+                            Bersertifikat"</p>
+                    </div>
+
+                    <!-- Date & Link -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="calendar-days"></i>
+                            <h3>Date & Registration</h3>
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.25rem;">
+                                <strong>Registration Period:</strong></p>
+                            <p class="highlight-date" style="font-size: 1.2rem; text-align: left; margin-bottom: 0;">11
+                                - 25 March 2026</p>
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.25rem;"><strong>Event
+                                    Date:</strong></p>
+                            <p class="highlight-date" style="font-size: 1.5rem; text-align: left; margin-bottom: 0;">
+                                Saturday, March 28th 2026</p>
+                        </div>
+                        <a href="https://linktr.ee/WebinarSKKKonstruksi" target="_blank" class="venue-link"
+                            style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--green); text-decoration: none; font-weight: bold;">
+                            <i data-lucide="external-link" style="width: 18px; height: 18px;"></i> Access Linktree here
+                        </a>
+                    </div>
+
+                    <!-- Contact Person -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <i data-lucide="phone"></i>
+                            <h3>Contact Person</h3>
+                        </div>
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <strong>Ganes</strong>
+                                <p>WhatsApp: <a href="https://wa.me/6281228823682"
+                                        style="color: var(--green); text-decoration: none;">+62 812-2882-3682</a></p>
+                            </div>
+                            <div class="contact-item">
+                                <strong>Angel</strong>
+                                <p>WhatsApp: <a href="https://wa.me/6282264834588"
+                                        style="color: var(--green); text-decoration: none;">+62 822-6483-4588</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card register-card centered-register"
+                    style="margin-top: 2rem; display: flex; justify-content: center;">
+                    <a href="register.html" class="btn-register">
+                        <i data-lucide="user-plus"></i>
+                        REGISTER NOW
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer-modern">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand-col">
+                    <img src="assets/images/logo-nobg.png" alt="CEIC Logo" class="footer-logo">
+                    <h3 class="footer-brand-title font-rough">CEIC Season XIV</h3>
+                    <p class="footer-brand-desc">Building a Sustainable and Resilient Infrastructure: Developing Digital
+                        Transformation for Net Zero Emissions and Community Impact.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>ceicseasonxiv@gmail.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>08112588331</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Civil Engineering Building, Diponegoro University, Semarang 50275</span>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer-social-col">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/ceic_undip" target="_blank" class="social-btn">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@ceicundipxiv?is_from_webapp=1&sender_device=pc" target="_blank"
+                            class="social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-social-text">@ceic_undip | @ceicundipxiv</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="dist/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Event Type Tab Switching
+        function showEventType(type) {
+            // Update tabs
+            document.querySelectorAll('.event-type-tab').forEach(tab => tab.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Toggle navigation visibility
+            const competitionsNav = document.getElementById('competitions-nav');
+            const mainEventsNav = document.getElementById('main-events-nav');
+
+            // Show/hide sections and navigation
+            if (type === 'competitions') {
+                document.getElementById('competitions').style.display = 'block';
+                document.getElementById('main-events').style.display = 'none';
+                competitionsNav.style.display = 'inline-flex';
+                mainEventsNav.style.display = 'none';
+            } else {
+                document.getElementById('competitions').style.display = 'none';
+                document.getElementById('main-events').style.display = 'block';
+                competitionsNav.style.display = 'none';
+                mainEventsNav.style.display = 'inline-flex';
+            }
+        }
+
+        // Competition Event Switching
+        function showEvent(eventId) {
+            // Update nav buttons - only for competitions-nav
+            document.querySelectorAll('#competitions-nav .event-nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Show/hide event details
+            document.querySelectorAll('#competitions .event-detail').forEach(detail => {
+                detail.classList.remove('active');
+            });
+            document.getElementById('event-' + eventId).classList.add('active');
+
+            // Re-init icons
+            lucide.createIcons();
+        }
+
+        // Main Event Switching
+        function showMainEvent(eventId) {
+            // Update nav buttons - only for main-events-nav
+            document.querySelectorAll('#main-events-nav .event-nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Show/hide event details
+            document.querySelectorAll('#main-events .event-detail').forEach(detail => {
+                detail.classList.remove('active');
+            });
+            document.getElementById('main-event-' + eventId).classList.add('active');
+
+            // Re-init icons
+            lucide.createIcons();
+        }
+
+        // Speaker Carousel for Mobile
+        let currentSpeaker = 0;
+        let speakerInterval;
+
+        function showSpeaker(index) {
+            const speakers = document.querySelectorAll('.speaker-silhouette-standing');
+            const dots = document.querySelectorAll('.speaker-dot');
+
+            speakers.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === index) s.classList.add('active');
+            });
+
+            dots.forEach((d, i) => {
+                d.classList.remove('active');
+                if (i === index) d.classList.add('active');
+            });
+
+            currentSpeaker = index;
+        }
+
+        function nextSpeaker() {
+            const speakers = document.querySelectorAll('.speaker-silhouette-standing');
+            currentSpeaker = (currentSpeaker + 1) % speakers.length;
+            showSpeaker(currentSpeaker);
+        }
+
+        function initSpeakerCarousel() {
+            // Set first speaker as active
+            const speakers = document.querySelectorAll('.speaker-silhouette-standing');
+            if (speakers.length > 0) {
+                speakers[0].classList.add('active');
+            }
+
+            // Auto-rotate on mobile
+            if (window.innerWidth <= 768) {
+                speakerInterval = setInterval(nextSpeaker, 5000);
+            }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= 768) {
+                if (!speakerInterval) {
+                    speakerInterval = setInterval(nextSpeaker, 5000);
+                }
+            } else {
+                if (speakerInterval) {
+                    clearInterval(speakerInterval);
+                    speakerInterval = null;
+                }
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initSpeakerCarousel);
+
+        // Poster Lightbox
+        function openPosterLightbox(src) {
+            let lightbox = document.getElementById('posterLightbox');
+            if (!lightbox) {
+                lightbox = document.createElement('div');
+                lightbox.id = 'posterLightbox';
+                lightbox.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:10000;cursor:pointer;justify-content:center;align-items:center;backdrop-filter:blur(5px);';
+                lightbox.innerHTML = '<img id="posterLightboxImg" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5);object-fit:contain;" /><button style="position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,0.15);border:none;color:white;font-size:2rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);transition:background 0.3s;">&times;</button>';
+                lightbox.onclick = function () { this.style.display = 'none'; };
+                document.body.appendChild(lightbox);
+            }
+            document.getElementById('posterLightboxImg').src = src;
+            lightbox.style.display = 'flex';
+        }
+    </script>
+
+
+</body>
+
+</html>

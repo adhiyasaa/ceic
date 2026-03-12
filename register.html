@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - CEIC Season XIV</title>
+    <link rel="icon" type="image/png" href="assets/images/logo-notext.png">
+
+    <!-- Bundled CSS via Webpack + Tailwind -->
+    <link rel="stylesheet" href="dist/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&family=Public+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Force file input labels to be black for better readability */
+        .file-upload-compact label {
+            color: #000 !important;
+            font-weight: 500;
+        }
+    </style>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Texture Overlay -->
+    <div class="paper-texture"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="brand">
+                <a href="index.html">
+                    <img src="assets/images/logo-notext.png" alt="CEIC Logo" class="nav-logo">
+                </a>
+            </div>
+
+            <div class="nav-center hidden-mobile">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="index.html#about" class="nav-link">ABOUT</a>
+                <a href="events.html" class="nav-link">EVENTS</a>
+            </div>
+
+            <div class="nav-right hidden-mobile">
+                <a href="index.html#teaser" class="nav-link contact-link">TEASER</a>
+                <a href="register.html" class="btn-nav">REGISTER</a>
+            </div>
+
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i data-lucide="menu" class="text-dark"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="assets/images/logo-nobg.png" alt="Logo" style="height:40px;">
+            <i data-lucide="x" onclick="toggleMenu()" style="cursor:pointer;"></i>
+        </div>
+        <div class="mobile-links">
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="index.html#about" onclick="toggleMenu()">About</a>
+            <a href="events.html" onclick="toggleMenu()">Events</a>
+            <a href="index.html#teaser" onclick="toggleMenu()">Teaser</a>
+            <a href="register.html" class="mobile-register-btn" onclick="toggleMenu()">Register Now</a>
+        </div>
+    </div>
+
+    <!-- Registration Hero -->
+    <section class="register-hero">
+        <div class="container text-center">
+            <span class="font-script text-cream text-2xl">Join Us</span>
+            <h1 class="font-rough text-cream register-hero-title">REGISTRATION FORM</h1>
+            <p class="font-body text-cream opacity-80 mt-4">Fill out the form below to register for CEIC Season
+                XIV</p>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section class="register-form-section compact">
+        <div class="container">
+            <div class="register-form-container compact">
+                <!-- Main Form -->
+                <form class="register-form compact" id="registrationForm">
+
+                    <!-- Row 1: Event Selection -->
+                    <div class="form-row-compact">
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="trophy"></i> Event
+                            </h3>
+                            <select class="form-select compact" name="event" id="eventSelect" required>
+                                <option value="">Select Event</option>
+                                <option value="Webinar">Webinar SKK Konstruksi Jenjang 6</option>
+                                <option value="IBDC">IBDC - Bridge Design</option>
+                                <option value="IBIC">IBIC - BIM Innovation</option>
+                                <option value="IDIC">IDIC - Dam Innovation</option>
+                                <option value="IPIC">IPIC - Paper Innovation</option>
+                                <option value="Workshop">BIM Workshop</option>
+                                <option value="Seminar">National Seminar</option>
+                                <option value="COMPEX">Company Expo (COMPEX)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Download Section (Dynamic) -->
+                    <div id="downloadContainer" style="display: none; margin-bottom: 2rem;">
+                    </div>
+
+                    <!-- COMPETITION FORM (Team-based) - Hidden when main event selected -->
+                    <div id="competitionForm">
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="users"></i> Team Info
+                            </h3>
+                            <input type="text" class="form-input compact" name="teamName" placeholder="Team Name *"
+                                id="teamName">
+                            <input type="text" class="form-input compact" name="institution"
+                                placeholder="Institution/University *" id="institution">
+                            <select class="form-select compact" name="nationality" id="nationality"
+                                onchange="toggleOtherNationality()">
+                                <option value="">Select Nationality *</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Vietnam">Vietnam</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input type="text" class="form-input compact" name="otherNationality" id="otherNationality"
+                                placeholder="Please specify your nationality *"
+                                style="display: none; margin-top: 0.5rem;">
+                        </div>
+
+                        <!-- Team Leader (First Member) -->
+                        <div class="form-section-compact leader-section">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="crown"></i> Team Leader (Member 1)
+                            </h3>
+                            <div class="form-grid-5">
+                                <input type="text" class="form-input compact" name="leaderName"
+                                    placeholder="Full Name *" id="leaderName">
+                                <input type="text" class="form-input compact" name="leaderStudentId"
+                                    placeholder="Student ID *" id="leaderStudentId">
+                                <input type="text" class="form-input compact" name="leaderMajor" placeholder="Major *"
+                                    id="leaderMajor">
+                                <input type="tel" class="form-input compact" name="leaderPhone"
+                                    placeholder="Phone (+62...) *" id="leaderPhone">
+                                <input type="email" class="form-input compact" name="leaderEmail" placeholder="Email *"
+                                    id="leaderEmail">
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Team Members Container -->
+                        <div id="teamMembersContainer">
+                            <!-- Members will be added here dynamically -->
+                        </div>
+
+                        <!-- Add Member Button -->
+                        <div class="add-member-section">
+                            <button type="button" class="btn-add-member" id="btnAddMember" onclick="addMember()">
+                                <i data-lucide="user-plus"></i> Add Team Member
+                            </button>
+                            <span class="member-count">Members: <span id="memberCount">1</span>/3 <span
+                                    id="memberNote">(Leader only)</span></span>
+                        </div>
+
+                        <!-- Row 2: Supervisor & Documents Side by Side -->
+                        <div class="form-row-compact">
+                            <div class="form-section-compact">
+                                <h3 class="form-section-title-compact">
+                                    <i data-lucide="graduation-cap"></i> Supervisor <span
+                                        style="font-size: 0.7rem; color: #888; font-weight: normal;">(Optional)</span>
+                                </h3>
+                                <input type="text" class="form-input compact" name="supervisorName"
+                                    placeholder="Supervisor Name" id="supervisorName">
+                                <input type="email" class="form-input compact" name="supervisorEmail"
+                                    placeholder="Supervisor Email" id="supervisorEmail">
+                            </div>
+
+                            <div class="form-section-compact">
+                                <h3 class="form-section-title-compact">
+                                    <i data-lucide="file-text"></i> Documents
+                                </h3>
+                                <div class="file-upload-compact">
+                                    <label id="labelLeaderIdCard">Student ID Card (Leader) *</label>
+                                    <input type="file" class="form-file compact" name="leaderIdCard"
+                                        accept="image/*,.pdf" id="leaderIdCard">
+                                </div>
+                                <div class="file-upload-compact">
+                                    <label id="labelPaymentProof">Payment Proof *</label>
+                                    <input type="file" class="form-file compact" name="paymentProof"
+                                        accept="image/*,.pdf" id="competitionPaymentProof">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INDIVIDUAL FORM (For Main Events) - Hidden by default -->
+                    <div id="individualForm" style="display: none;">
+
+                        <!-- Semi-National Seminar Configuration (Hidden by default) -->
+                        <div class="form-section-compact" id="seminarConfig" style="display: none;">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="ticket"></i> Ticket Configuration
+                            </h3>
+                            <div class="form-grid-2">
+                                <select class="form-select compact" name="ticketCategory" id="ticketCategory"
+                                    onchange="toggleTicketCategory()">
+                                    <option value="Single">Single Admission Ticket</option>
+                                    <option value="Bundled">Bundled Admission Ticket (3 Pax)</option>
+                                </select>
+                                <select class="form-select compact" name="ticketType" id="ticketType">
+                                    <option value="">Select Ticket Type *</option>
+                                    <option value="Student/Practitioner/General">Student/Practitioner/General Admission
+                                    </option>
+                                    <option value="Online Ticket">Online Ticket - via Zoom Meeting</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="user"></i> Personal Information
+                            </h3>
+                            <!-- Container for Single Person Form -->
+                            <div id="singlePersonForm">
+                                <div class="form-grid-2">
+                                    <input type="text" class="form-input compact" name="individualName"
+                                        placeholder="Full Name *" id="individualName">
+                                    <input type="text" class="form-input compact" name="individualStudentId"
+                                        placeholder="Student ID Number (Optional)" id="individualStudentId">
+                                    <input type="text" class="form-input compact" name="individualMajor"
+                                        placeholder="Major (Optional)" id="individualMajor">
+                                    <input type="text" class="form-input compact" name="individualInstitution"
+                                        placeholder="Institution *" id="individualUniversity">
+                                </div>
+                            </div>
+                            <!-- Container for Bundled Person Form -->
+                            <div id="bundledPersonForm" style="display: none;">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="briefcase"></i> Professional Details
+                            </h3>
+                            <select class="form-select compact" name="profession" id="profession"
+                                onchange="toggleOtherProfession()">
+                                <option value="">Select Profession *</option>
+                                <option value="Student">Student</option>
+                                <option value="Industry Practitioner">Industry Practitioner</option>
+                                <option value="Corporate Professional">Corporate Professional</option>
+                                <option value="Other">Other (please specify)</option>
+                            </select>
+                            <input type="text" class="form-input compact" name="otherProfession" id="otherProfession"
+                                placeholder="Please specify your profession *"
+                                style="display: none; margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="map-pin"></i> Contact & Location
+                            </h3>
+                            <div class="form-grid-2">
+                                <input type="tel" class="form-input compact" name="individualWhatsapp"
+                                    placeholder="WhatsApp Number *" id="individualWhatsapp">
+                                <input type="text" class="form-input compact" name="individualCountry"
+                                    placeholder="Country of Domicile *" id="individualCountry">
+                                <input type="email" class="form-input compact" name="individualEmail"
+                                    placeholder="Email Address *" id="individualEmail">
+                                <input type="text" class="form-input compact" name="individualProvince"
+                                    placeholder="Province *" id="individualProvince">
+                            </div>
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="file-text"></i> Documents
+                            </h3>
+                            <div class="form-row-compact">
+                                <div class="file-upload-compact">
+                                    <label>Photo of Student ID (Optional)</label>
+                                    <input type="file" class="form-file compact" name="individualStudentIdPhoto"
+                                        accept="image/*" id="individualStudentIdPhoto">
+                                </div>
+                                <div class="file-upload-compact" id="individualPaymentProofContainer">
+                                    <label>Payment Proof *</label>
+                                    <input type="file" class="form-file compact" name="individualPaymentProof"
+                                        accept="image/*" id="individualPaymentProof">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Info Compact -->
+                    <div class="payment-info-compact" id="paymentInfo">
+                        <div class="payment-accounts">
+                            <span><strong>Bank Mandiri:</strong> 1360036879705 a.n. Zeti Sabdarifa Arsan</span>
+                            <span><strong>PayPal:</strong> <a href="https://www.paypal.me/ZetiSabdarifa" target="_blank"
+                                    style="color: white;">paypal.me/ZetiSabdarifa</a></span>
+                        </div>
+                        <span class="fee" id="feeDisplay">Select an event to see pricing</span>
+                    </div>
+
+                    <!-- Terms and Submit -->
+                    <div class="form-footer-compact">
+                        <div class="form-checkbox compact">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#" class="link-green">Terms and
+                                    Conditions</a>
+                                *</label>
+                        </div>
+                        <button type="submit" class="btn-submit compact" id="submitBtn" disabled>
+                            <i data-lucide="send"></i> Submit Registration
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Compact Sidebar -->
+                <aside class="register-sidebar compact">
+                    <div class="sidebar-card compact" id="posterPreview"
+                        style="display: none; padding: 0; overflow: hidden; border-left: 4px solid var(--green);">
+                        <!-- Poster will be dynamically inserted here -->
+                    </div>
+                    <div class="sidebar-card compact" id="pricingCard">
+                        <h4><i data-lucide="credit-card"></i> Registration Fee</h4>
+                        <div id="pricingInfo">
+                            <p class="contact-hint">Select an event to see pricing</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-card compact" id="datesCard">
+                        <h4><i data-lucide="calendar"></i> Important Dates</h4>
+                        <div id="importantDates">
+                            <p class="contact-hint">Select an event to see dates</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-card compact" id="contactCard">
+                        <h4><i data-lucide="phone"></i> Contact Person</h4>
+                        <div id="contactInfo">
+                            <p class="contact-hint">Select an event to see contact info</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer-modern">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand-col">
+                    <img src="assets/images/logo-nobg.png" alt="CEIC Logo" class="footer-logo">
+                    <h3 class="footer-brand-title font-rough">CEIC Season XIV</h3>
+                    <p class="footer-brand-desc">Building a Sustainable and Resilient Infrastructure: Developing Digital
+                        Transformation for Net Zero Emissions and Community Impact.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>ceicseasonxiv@gmail.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>08112588331</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Civil Engineering Building, Diponegoro University, Semarang 50275</span>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer-social-col">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/ceic_undip" target="_blank" class="social-btn">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@ceicundipxiv?is_from_webapp=1&sender_device=pc" target="_blank"
+                            class="social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-social-text">@ceic_undip | @ceicundipxiv</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-icon">
+                <i data-lucide="check"></i>
+            </div>
+            <h3 class="modal-title">Registration Successful!</h3>
+            <p class="modal-text">
+                Thank you for registering for The 14th Season of CEIC. Please confirm via the contact person provided.
+            </p>
+            <button class="btn-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="dist/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Event data for dynamic sidebar
+        const eventData = {
+            IBDC: {
+                downloadLink: "https://drive.google.com/drive/folders/1KtYrcem_B9fqfyWPsOoRrhdAGpwIfDoQ",
+                pricing: `
+                    <p><strong>Batch 1:</strong> Rp 300.000 / USD 40</p>
+                    <p><strong>Batch 2:</strong> Rp 350.000 / USD 45</p>
+                `,
+                dates: `
+                    <p><strong>Registration Batch 1:</strong> 12 - 24 Jan 2026</p>
+                    <p><strong>Registration Batch 2:</strong> 25 Jan - 24 Feb 2026</p>
+                    <p><strong>Study Case Release:</strong> 25 Feb 2026</p>
+                    <p><strong>Final:</strong> 22 May 2026</p>
+                `,
+                contact: `
+                    <p><strong>Aqil</strong></p>
+                    <p>WA: 081211678384</p>
+                    <p>LINE: @ghalibbenardigk</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Akbar</strong></p>
+                    <p>WA: 081211412708</p>
+                    <p>LINE: @akbarrmdh_</p>
+                `,
+                feeText: 'Batch 1: Rp 300.000 | Batch 2: Rp 350.000'
+            },
+            IBIC: {
+                downloadLink: "https://drive.google.com/drive/folders/1YbBwODT5nuLIF1NKkdL7Ka9d3_BfgOnl",
+                pricing: `
+                    <p><strong>Batch 1:</strong> Rp 300.000 / USD 40</p>
+                    <p><strong>Batch 2:</strong> Rp 350.000 / USD 45</p>
+                `,
+                dates: `
+                    <p><strong>Registration Batch 1:</strong> 12 - 24 Jan 2026</p>
+                    <p><strong>Registration Batch 2:</strong> 25 Jan - 24 Feb 2026</p>
+                    <p><strong>Study Case Release:</strong> 25 Feb 2026</p>
+                    <p><strong>Final:</strong> 22 May 2026</p>
+                `,
+                contact: `
+                    <p><strong>Iqbal</strong></p>
+                    <p>WA: +62 857-2913-0329</p>
+                    <p>LINE: brillianiqball</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Nisa</strong></p>
+                    <p>WA: +62 895-4288-47269</p>
+                    <p>LINE: oktavianiii17</p>
+                `,
+                feeText: 'Batch 1: Rp 300.000 | Batch 2: Rp 350.000'
+            },
+            IDIC: {
+                downloadLink: "https://drive.google.com/drive/folders/1z-lpsHFCE9VxQwqR1zXaXGiMuH9hDfND",
+                pricing: `
+                    <p><strong>Batch 1:</strong> Rp 300.000 / USD 40</p>
+                    <p><strong>Batch 2:</strong> Rp 350.000 / USD 45</p>
+                `,
+                dates: `
+                    <p><strong>Registration Batch 1:</strong> 12 - 24 Jan 2026</p>
+                    <p><strong>Registration Batch 2:</strong> 25 Jan - 24 Feb 2026</p>
+                    <p><strong>Study Case Release:</strong> 25 Feb 2026</p>
+                    <p><strong>Final:</strong> 22 May 2026</p>
+                `,
+                contact: `
+                    <p><strong>Azmi</strong></p>
+                    <p>WA: +62 896-0428-8431</p>
+                    <p>LINE: azmitazky</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Talitha</strong></p>
+                    <p>WA: +62 888-0275-0543</p>
+                    <p>LINE: talitha.shafi</p>
+                `,
+                feeText: 'Batch 1: Rp 300.000 | Batch 2: Rp 350.000'
+            },
+            IPIC: {
+                downloadLink: "https://drive.google.com/drive/folders/1coDxrCh5xKdX4qChrRx_q4bEw5SUPNxa",
+                pricing: `
+                    <p>No payment is required at the abstract submission stage</p>
+                `,
+                dates: `
+                    <p><strong>Registration & Abstract:</strong> 12 Jan - 13 Feb 2026</p>
+                    <p><strong>Accepted Abstract Announcement:</strong> 28 February 2026</p>
+                    <p><strong>Re-registration Batch 1:</strong> 28 Feb - 4 Mar 2026</p>
+                    <p><strong>Re-registration Batch 2:</strong> 5 - 13 Mar 2026</p>
+                    <p><strong>Final:</strong> 22 May 2026</p>
+                `,
+                contact: `
+                    <p><strong>Ulva</strong></p>
+                    <p>WA: 081915215126</p>
+                    <p>LINE: anindyaawn</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Cinta</strong></p>
+                    <p>WA: 085742661832</p>
+                    <p>LINE: cintaaanurma_</p>
+                `,
+                feeText: 'No payment is required at the abstract submission stage'
+            },
+            Workshop: {
+                pricing: `<p>Coming Soon</p>`,
+                dates: `<p><strong>Event Date:</strong> 25 - 26 April 2026</p>`,
+                contact: `
+                    <p><strong>Farid</strong></p>
+                    <p>WA: +62 813-7777-6447</p>
+                `,
+                feeText: 'Coming Soon'
+            },
+            Seminar: {
+                pricing: `<p>Coming Soon</p>`,
+                dates: `<p><strong>Event Date:</strong> 23 May 2026</p>`,
+                contact: `
+                    <p><strong>Vita</strong></p>
+                    <p>WA: +62 821-3411-0186</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Tama</strong></p>
+                    <p>WA: +62 895-3332-85030</p>
+                `,
+                feeText: 'Coming Soon'
+            },
+            Webinar: {
+                pricing: `<p>Free</p>`,
+                dates: `
+                    <p><strong>Registration:</strong> 11 - 25 March 2026</p>
+                    <p><strong>Event Date:</strong> 28 March 2026</p>
+                `,
+                contact: `
+                    <p><strong>Ganes</strong></p>
+                    <p>WA: +62 812-2882-3682</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Angel</strong></p>
+                    <p>WA: +62 822-6483-4588</p>
+                `,
+                feeText: 'Free',
+                poster: 'assets/images/poster-webinar.png'
+            },
+            COMPEX: {
+                pricing: `<p>Free</p>`,
+                dates: `<p><strong>Event Date:</strong> 23 May 2026</p>`,
+                contact: `<p>Contact info coming soon</p>`,
+                feeText: 'Free'
+            }
+        };
+
+        // Update sidebar when event changes
+        function updateSidebar(eventValue) {
+            const pricingContainer = document.getElementById('pricingInfo');
+            const datesContainer = document.getElementById('importantDates');
+            const contactContainer = document.getElementById('contactInfo');
+            const feeDisplay = document.getElementById('feeDisplay');
+            const posterContainer = document.getElementById('posterPreview');
+
+            if (eventValue && eventData[eventValue]) {
+                pricingContainer.innerHTML = eventData[eventValue].pricing;
+                datesContainer.innerHTML = eventData[eventValue].dates;
+                contactContainer.innerHTML = eventData[eventValue].contact;
+                feeDisplay.textContent = eventData[eventValue].feeText;
+
+                // Show poster if available
+                if (eventData[eventValue].poster && posterContainer) {
+                    posterContainer.style.display = 'block';
+                    posterContainer.innerHTML = `<img src="${eventData[eventValue].poster}" alt="Event Poster" style="width:100%; border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">`;
+                } else if (posterContainer) {
+                    posterContainer.style.display = 'none';
+                    posterContainer.innerHTML = '';
+                }
+            } else {
+                pricingContainer.innerHTML = `<p class="contact-hint">Select an event to see pricing</p>`;
+                datesContainer.innerHTML = `<p class="contact-hint">Select an event to see dates</p>`;
+                contactContainer.innerHTML = `<p class="contact-hint">Select an event to see contact info</p>`;
+                feeDisplay.textContent = 'Select an event to see pricing';
+                if (posterContainer) {
+                    posterContainer.style.display = 'none';
+                    posterContainer.innerHTML = '';
+                }
+            }
+        }
+
+        // Toggle form based on event type
+        function toggleFormType(eventValue) {
+            const competitionForm = document.getElementById('competitionForm');
+            const individualForm = document.getElementById('individualForm');
+            const mainEvents = ['Workshop', 'Seminar', 'Webinar', 'COMPEX'];
+
+            if (mainEvents.includes(eventValue)) {
+                // Show individual form for main events
+                competitionForm.style.display = 'none';
+                individualForm.style.display = 'block';
+
+                // Disable required validation for competition fields
+                toggleRequiredFields('competitionForm', false);
+                // Enable required validation for individual fields
+                toggleRequiredFields('individualForm', true);
+
+                // IMPORTANT: Call updatePaymentProofVisibility AFTER toggleRequiredFields
+                // to properly disable event-specific fields like ticketType
+                updatePaymentProofVisibility(eventValue);
+            } else {
+                // Show competition form for competitions
+                competitionForm.style.display = 'block';
+                individualForm.style.display = 'none';
+
+                // Enable required validation for competition fields
+                toggleRequiredFields('competitionForm', true);
+                // Disable required validation for individual fields
+                toggleRequiredFields('individualForm', false);
+            }
+
+            lucide.createIcons();
+        }
+
+        // Toggle required attribute on form fields
+        function toggleRequiredFields(formId, isRequired) {
+            const form = document.getElementById(formId);
+            if (!form) {
+                console.warn('Form not found:', formId);
+                return;
+            }
+
+            console.log('toggleRequiredFields called:', formId, 'isRequired:', isRequired);
+
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="file"], select');
+            inputs.forEach(input => {
+                let shouldBeRequired = false;
+
+                // Check placeholder for text/select inputs
+                if (input.placeholder && input.placeholder.includes('*')) {
+                    shouldBeRequired = true;
+                }
+
+                // Special check for File Inputs (check previous label)
+                if (input.type === 'file') {
+                    const label = input.previousElementSibling;
+                    if (label && label.tagName === 'LABEL' && label.textContent.includes('*')) {
+                        shouldBeRequired = true;
+                    }
+                }
+
+                // Special check for Select inputs without placeholder but with default option
+                if (input.tagName === 'SELECT') {
+                    // Check if first option implies required
+                    if (input.options.length > 0) {
+                        const firstOption = input.options[0];
+                        if (firstOption.text.includes('*')) {
+                            shouldBeRequired = true;
+                        }
+                    }
+                }
+
+                if (isRequired && shouldBeRequired) {
+                    input.setAttribute('required', '');
+                    input.disabled = false;
+                } else {
+                    input.removeAttribute('required');
+                    // Also disable inputs in hidden forms to prevent any validation
+                    if (!isRequired) {
+                        input.disabled = true;
+                    }
+                }
+            });
+
+            // Re-enable inputs when form becomes active
+            if (isRequired) {
+                inputs.forEach(input => {
+                    input.disabled = false;
+                });
+            }
+
+            console.log('Finished toggling fields for:', formId);
+        }
+
+        // Toggle Other profession text input
+        function toggleOtherProfession() {
+            const professionSelect = document.getElementById('profession');
+            const otherInput = document.getElementById('otherProfession');
+
+            if (professionSelect.value === 'Other') {
+                otherInput.style.display = 'block';
+                otherInput.setAttribute('required', '');
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.removeAttribute('required');
+                otherInput.value = '';
+            }
+        }
+
+        // Toggle Other nationality text input
+        function toggleOtherNationality() {
+            const nationalitySelect = document.getElementById('nationality');
+            const otherInput = document.getElementById('otherNationality');
+
+            if (nationalitySelect.value === 'Other') {
+                otherInput.style.display = 'block';
+                otherInput.setAttribute('required', '');
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.removeAttribute('required');
+                otherInput.value = '';
+            }
+        }
+
+        // Update download section based on event
+        function updateDownloadSection(eventValue) {
+            const container = document.getElementById('downloadContainer');
+            const data = eventData[eventValue];
+
+            if (data && data.downloadLink) {
+                container.style.display = 'block';
+                container.innerHTML = `
+                    <div class="form-section-compact">
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                            <div style="flex: 1;">
+                                <h3 class="form-section-title-compact" style="margin-bottom: 0.25rem;">
+                                    <i data-lucide="download"></i> Competition Guidebook
+                                </h3>
+                                <p style="font-size: 0.85rem; color: #666; margin: 0;">
+                                    Please download and read the guidebook before registering.
+                                </p>
+                            </div>
+                            <a href="${data.downloadLink}" target="_blank" class="btn-submit compact" style="background: var(--red); box-shadow: var(--shadow-sm); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 20px;">
+                                <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+                                Copy Link / Download
+                            </a>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            } else {
+                container.style.display = 'none';
+                container.innerHTML = '';
+            }
+        }
+
+        // Update file inputs based on competition type
+        function updateCompetitionFileInputs(eventValue) {
+            const labelLeaderId = document.getElementById('labelLeaderIdCard');
+            const inputLeaderId = document.getElementById('leaderIdCard');
+            const labelPayment = document.getElementById('labelPaymentProof');
+            const inputPayment = document.getElementById('competitionPaymentProof');
+
+            // Competitions: IBDC, IBIC, IDIC, IPIC
+            const competitions = ['IBDC', 'IBIC', 'IDIC', 'IPIC'];
+
+            if (competitions.includes(eventValue)) {
+                // Change "Student ID Card" to "Registration Form" for all competitions
+                labelLeaderId.textContent = "Registration Form (can be obtained in the download area) *";
+                inputLeaderId.setAttribute('accept', '.pdf'); // PDF ONLY for Registration Form
+
+                if (eventValue === 'IPIC') {
+                    // IPIC: Change "Payment Proof" to "Abstract File"
+                    labelPayment.textContent = "Abstract File *";
+                    inputPayment.setAttribute('accept', '.pdf');
+                } else {
+                    // Other Competitions: Default "Payment Proof"
+                    labelPayment.textContent = "Payment Proof *";
+                    inputPayment.setAttribute('accept', 'image/*'); // Image ONLY for Payment Proof
+                }
+            } else {
+                // Reset to default for non-competition events (although this form is hidden)
+                labelLeaderId.textContent = "Student ID Card (Leader) *";
+                inputLeaderId.setAttribute('accept', 'image/*,.pdf');
+                labelPayment.textContent = "Payment Proof *";
+                inputPayment.setAttribute('accept', 'image/*'); // Image ONLY for Payment Proof
+            }
+        }
+
+        function updatePaymentProofVisibility(eventValue) {
+            const paymentProofContainer = document.getElementById('individualPaymentProofContainer');
+            const paymentInfoContainer = document.getElementById('paymentInfo');
+            const paymentInput = document.getElementById('individualPaymentProof');
+            const seminarConfig = document.getElementById('seminarConfig');
+            const ticketTypeSelect = document.getElementById('ticketType');
+            const ticketCategorySelect = document.getElementById('ticketCategory');
+
+            // Handle Seminar Config Visibility (Webinar uses COMPEX-style form, no ticket config)
+            if (eventValue === 'Seminar') {
+                seminarConfig.style.display = 'block';
+                // Enable ticket fields for Seminar only
+                ticketTypeSelect.disabled = false;
+                ticketTypeSelect.required = true;
+                ticketCategorySelect.disabled = false;
+                toggleTicketCategory(); // Ensure correct form state
+            } else {
+                seminarConfig.style.display = 'none';
+                // Disable ticket fields for non-Seminar/Webinar events (prevents validation)
+                ticketTypeSelect.disabled = true;
+                ticketTypeSelect.required = false;
+                ticketCategorySelect.disabled = true;
+                // Reset to single person form if leaving Seminar/Webinar
+                document.getElementById('singlePersonForm').style.display = 'block';
+                document.getElementById('bundledPersonForm').style.display = 'none';
+            }
+
+            if (eventValue === 'COMPEX' || eventValue === 'Webinar') {
+                paymentProofContainer.style.display = 'none';
+                paymentInfoContainer.style.display = 'none';
+                paymentInput.required = false;
+                paymentInput.disabled = true;
+            } else {
+                paymentProofContainer.style.display = 'block';
+                paymentInfoContainer.style.display = 'block';
+                paymentInput.disabled = false;
+                // Only required if we are not in competition mode, but this function runs for all events.
+                // However, individual form is only shown for Workshop, Seminar, Webinar, COMPEX.
+                // So if it's Workshop, Seminar, or Webinar, it should be required.
+                if (['Workshop', 'Seminar'].includes(eventValue)) {
+                    paymentInput.required = true;
+                } else {
+                    paymentInput.required = false;
+                }
+            }
+        }
+
+        // Toggle Ticket Category (Single vs Bundled)
+        function toggleTicketCategory() {
+            const categoryCallback = document.getElementById('ticketCategory').value;
+            const singleForm = document.getElementById('singlePersonForm');
+            const bundledForm = document.getElementById('bundledPersonForm');
+
+            if (categoryCallback === 'Bundled') {
+                singleForm.style.display = 'none';
+                bundledForm.style.display = 'block';
+                generateBundledForm();
+                // Disable required for single form
+                toggleRequiredFields('singlePersonForm', false);
+                // Enable required for bundled form
+                toggleRequiredFields('bundledPersonForm', true);
+            } else {
+                singleForm.style.display = 'block';
+                bundledForm.style.display = 'none';
+                // Enable required for single form
+                toggleRequiredFields('singlePersonForm', true);
+                // Disable required for bundled form
+                toggleRequiredFields('bundledPersonForm', false);
+            }
+        }
+
+        // Generate Bundled Form Inputs (3 Persons)
+        function generateBundledForm() {
+            const container = document.getElementById('bundledPersonForm');
+            if (container.children.length > 0) return; // Already generated
+
+            for (let i = 1; i <= 3; i++) {
+                const personHtml = `
+                    <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed #eee;">
+                        <h4 style="margin-bottom: 1rem; color: #4CAF50;">Person ${i}</h4>
+                        <div class="form-grid-2">
+                            <input type="text" class="form-input compact" name="bundleName${i}" placeholder="Person ${i} Full Name *">
+                            <input type="text" class="form-input compact" name="bundleStudentId${i}" placeholder="Person ${i} Student ID (Optional)">
+                            <input type="text" class="form-input compact" name="bundleMajor${i}" placeholder="Person ${i} Major (Optional)">
+                            <input type="text" class="form-input compact" name="bundleInstitution${i}" placeholder="Person ${i} Institution *">
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', personHtml);
+            }
+        }
+
+        // Add event listener to event select
+        document.querySelector('select[name="event"]').addEventListener('change', function () {
+            updateSidebar(this.value);
+            toggleFormType(this.value);
+            updateDownloadSection(this.value);
+            updateCompetitionFileInputs(this.value);
+            updatePaymentProofVisibility(this.value);
+        });
+
+        // Enable/Disable submit button based on terms checkbox
+        const termsCheckbox = document.getElementById('terms');
+        const submitBtn = document.getElementById('submitBtn');
+
+        termsCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+                submitBtn.style.cursor = 'not-allowed';
+            }
+        });
+
+        // Member counter
+        let memberCount = 1; // Leader is Member 1
+        const maxMembers = 3; // Max 3 members (1 leader + 2 additional)
+
+        // Add Member Function
+        function addMember() {
+            if (memberCount >= maxMembers) {
+                alert('Maximum 3 team members allowed (1 leader + 2 members)');
+                return;
+            }
+
+            memberCount++;
+            const container = document.getElementById('teamMembersContainer');
+
+            const memberDiv = document.createElement('div');
+            memberDiv.className = 'form-section-compact member-card';
+            memberDiv.id = `member${memberCount}`;
+            memberDiv.innerHTML = `
+                <div class="member-header">
+                    <h3 class="form-section-title-compact">
+                        <i data-lucide="user"></i> Member ${memberCount}
+                    </h3>
+                    <button type="button" class="btn-remove-member" onclick="removeMember(${memberCount})">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="form-grid-5">
+                    <input type="text" class="form-input compact" name="member${memberCount}Name" placeholder="Full Name">
+                    <input type="text" class="form-input compact" name="member${memberCount}StudentId" placeholder="Student ID">
+                    <input type="text" class="form-input compact" name="member${memberCount}Major" placeholder="Major">
+                    <input type="tel" class="form-input compact" name="member${memberCount}Phone" placeholder="Phone">
+                    <input type="email" class="form-input compact" name="member${memberCount}Email" placeholder="Email">
+                </div>
+            `;
+            container.appendChild(memberDiv);
+
+            // Update count display
+            document.getElementById('memberCount').textContent = memberCount;
+            updateMemberCountText();
+
+            // Re-initialize Lucide icons for new elements
+            lucide.createIcons();
+        }
+
+        // Remove Member Function
+        function removeMember(id) {
+            const memberDiv = document.getElementById(`member${id}`);
+            if (memberDiv) {
+                memberDiv.remove();
+                memberCount--;
+                document.getElementById('memberCount').textContent = memberCount;
+                updateMemberCountText();
+
+                // Renumber remaining members
+                renumberMembers();
+            }
+        }
+
+        // Update member count text
+        function updateMemberCountText() {
+            const noteSpan = document.getElementById('memberNote');
+            const addBtn = document.getElementById('btnAddMember');
+
+            if (memberCount === 1) {
+                noteSpan.textContent = '(Leader only)';
+            } else if (memberCount >= maxMembers) {
+                noteSpan.textContent = '(Max reached)';
+            } else {
+                noteSpan.textContent = '';
+            }
+
+            // Disable/enable add button
+            if (memberCount >= maxMembers) {
+                addBtn.disabled = true;
+                addBtn.style.opacity = '0.5';
+                addBtn.style.cursor = 'not-allowed';
+            } else {
+                addBtn.disabled = false;
+                addBtn.style.opacity = '1';
+                addBtn.style.cursor = 'pointer';
+            }
+
+            document.getElementById('memberCount').textContent = memberCount;
+        }
+
+        // Renumber members after removal
+        function renumberMembers() {
+            const container = document.getElementById('teamMembersContainer');
+            const members = container.querySelectorAll('.member-card');
+
+            members.forEach((member, index) => {
+                const newNum = index + 2; // Start from 2 since Leader is 1
+                member.id = `member${newNum}`;
+                member.querySelector('h3').innerHTML = `<i data-lucide="user"></i> Member ${newNum}`;
+                member.querySelector('.btn-remove-member').setAttribute('onclick', `removeMember(${newNum})`);
+
+                const inputs = member.querySelectorAll('input');
+                inputs[0].name = `member${newNum}Name`;
+                inputs[1].name = `member${newNum}StudentId`;
+                inputs[2].name = `member${newNum}Email`;
+            });
+
+            memberCount = members.length + 1;
+            document.getElementById('memberCount').textContent = memberCount;
+            lucide.createIcons();
+        }
+
+        // Google Apps Script deployment URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzs0Bs5YJnBYVBNEUFcrsE-CIspE9jdfxQDyoZ7hDxRCP3x32yqXalXI0GG5AIaXwP/exec';
+
+        // Competition events (team-based)
+        const COMPETITION_EVENTS = ['IBDC', 'IBIC', 'IDIC', 'IPIC'];
+
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) {
+                    resolve({ data: '', name: '' });
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64 = reader.result.split(',')[1];
+                    resolve({ data: base64, name: file.name });
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Form submission handler
+        // Enhanced Mobile Validation
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const form = document.getElementById('registrationForm');
+            if (!form.checkValidity()) {
+                // Find first invalid element
+                const firstInvalid = form.querySelector(':invalid');
+                if (firstInvalid) {
+                    // Visual feedback
+                    firstInvalid.classList.add('shake-animation');
+                    firstInvalid.style.borderColor = 'var(--red)';
+                    firstInvalid.style.background = 'var(--red-50)';
+
+                    // Reset style after 2 seconds
+                    setTimeout(() => {
+                        firstInvalid.style.borderColor = '';
+                        firstInvalid.style.background = '';
+                        firstInvalid.classList.remove('shake-animation');
+                    }, 2000);
+
+                    // Force scroll with offset for fixed header (backup to CSS scroll-margin)
+                    const headerOffset = 120;
+                    const elementPosition = firstInvalid.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // Focus for accessibility
+                    firstInvalid.focus({ preventScroll: true });
+                }
+            }
+        });
+
+        let isSubmitting = false;
+
+        document.getElementById('registrationForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            if (isSubmitting) return;
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading state
+            isSubmitting = true;
+            submitBtn.disabled = true;
+            document.getElementById('terms').disabled = true; // Disable terms checkbox
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Submitting...';
+            lucide.createIcons();
+
+            try {
+                const eventType = document.getElementById('eventSelect').value;
+                let formData = { event: eventType };
+
+                if (COMPETITION_EVENTS.includes(eventType)) {
+                    // Competition form data
+                    const studentIdFile = document.getElementById('leaderIdCard').files[0];
+                    const paymentFile = document.getElementById('competitionPaymentProof').files[0];
+
+                    const [studentIdPhoto, paymentProof] = await Promise.all([
+                        fileToBase64(studentIdFile),
+                        fileToBase64(paymentFile)
+                    ]);
+
+                    formData = {
+                        event: eventType,
+                        teamName: document.getElementById('teamName').value,
+                        institution: document.getElementById('institution').value,
+                        nationality: document.getElementById('nationality').value === 'Other'
+                            ? document.getElementById('otherNationality').value
+                            : document.getElementById('nationality').value,
+                        leaderName: document.getElementById('leaderName').value,
+                        leaderId: document.getElementById('leaderStudentId').value,
+                        leaderMajor: document.getElementById('leaderMajor').value,
+                        leaderPhone: document.getElementById('leaderPhone').value,
+                        leaderEmail: document.getElementById('leaderEmail').value,
+                        member2Name: document.querySelector('input[name="member2Name"]')?.value || '',
+                        member2Id: document.querySelector('input[name="member2StudentId"]')?.value || '',
+                        member2Major: document.querySelector('input[name="member2Major"]')?.value || '',
+                        member2Phone: document.querySelector('input[name="member2Phone"]')?.value || '',
+                        member2Email: document.querySelector('input[name="member2Email"]')?.value || '',
+                        member3Name: document.querySelector('input[name="member3Name"]')?.value || '',
+                        member3Id: document.querySelector('input[name="member3StudentId"]')?.value || '',
+                        member3Major: document.querySelector('input[name="member3Major"]')?.value || '',
+                        member3Phone: document.querySelector('input[name="member3Phone"]')?.value || '',
+                        member3Email: document.querySelector('input[name="member3Email"]')?.value || '',
+                        supervisorName: document.getElementById('supervisorName').value,
+                        supervisorEmail: document.getElementById('supervisorEmail').value,
+                        studentIdPhoto: studentIdPhoto.data,
+                        studentIdPhotoName: studentIdPhoto.name,
+                        paymentProof: paymentProof.data,
+                        paymentProofName: paymentProof.name
+                    };
+                } else {
+                    // Individual form data (Workshop, Seminar, COMPEX)
+                    // Special Handling for Seminar Bundled Tickets
+                    if (eventType === 'Seminar') {
+                        const studentIdFile = document.getElementById('individualStudentIdPhoto').files[0];
+                        const paymentFile = document.getElementById('individualPaymentProof').files[0];
+
+                        const [studentIdPhoto, paymentProof] = await Promise.all([
+                            fileToBase64(studentIdFile),
+                            fileToBase64(paymentFile)
+                        ]);
+
+                        const ticketCategory = document.getElementById('ticketCategory').value;
+
+                        formData = {
+                            event: eventType,
+                            ticketCategory: ticketCategory,
+                            ticketType: document.getElementById('ticketType').value,
+                            waNumber: document.getElementById('individualWhatsapp').value,
+                            email: document.getElementById('individualEmail').value,
+                            nation: document.getElementById('individualCountry').value,
+                            province: document.getElementById('individualProvince').value,
+                            studentIdPhoto: studentIdPhoto.data,
+                            studentIdPhotoName: studentIdPhoto.name,
+                            paymentProof: paymentProof.data,
+                            paymentProofName: paymentProof.name,
+
+                            // Person 1 (Always present, either from Single form or Bundled Person 1)
+                            person1_full_name: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleName1"]').value : document.getElementById('individualName').value,
+                            person1_student_id_number: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleStudentId1"]').value : document.getElementById('individualStudentId').value,
+                            person1_major: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleMajor1"]').value : document.getElementById('individualMajor').value,
+                            person1_institution: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleInstitution1"]').value : document.getElementById('individualUniversity').value,
+
+                            // Person 2 (Bundled Only)
+                            person2_full_name: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleName2"]').value : '',
+                            person2_student_id_number: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleStudentId2"]').value : '',
+                            person2_major: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleMajor2"]').value : '',
+                            person2_institution: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleInstitution2"]').value : '',
+
+                            // Person 3 (Bundled Only)
+                            person3_full_name: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleName3"]').value : '',
+                            person3_student_id_number: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleStudentId3"]').value : '',
+                            person3_major: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleMajor3"]').value : '',
+                            person3_student_id_number: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleStudentId3"]').value : '',
+                            person3_major: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleMajor3"]').value : '',
+                            person3_institution: ticketCategory === 'Bundled' ? document.querySelector('input[name="bundleInstitution3"]').value : '',
+
+                            // Profession
+                            profession: document.getElementById('profession').value === 'Other'
+                                ? document.getElementById('otherProfession').value
+                                : document.getElementById('profession').value
+                        };
+
+                    } else {
+                        // Standard Individual Submission (Workshop, COMPEX, Webinar)
+                        const studentIdFile = document.getElementById('individualStudentIdPhoto').files[0];
+                        let paymentFile = null;
+
+                        // Only get payment proof if NOT COMPEX or Webinar
+                        if (eventType !== 'COMPEX' && eventType !== 'Webinar') {
+                            paymentFile = document.getElementById('individualPaymentProof').files[0];
+                        }
+
+                        const [studentIdPhoto, paymentProof] = await Promise.all([
+                            fileToBase64(studentIdFile),
+                            (eventType !== 'COMPEX' && eventType !== 'Webinar') ? fileToBase64(paymentFile) : Promise.resolve({ data: '', name: '' })
+                        ]);
+
+                        formData = {
+                            event: eventType,
+                            fullName: document.getElementById('individualName').value,
+                            studentIdNumber: document.getElementById('individualStudentId').value,
+                            major: document.getElementById('individualMajor').value,
+                            institution: document.getElementById('individualUniversity').value, // Used to be university
+                            profession: document.getElementById('profession').value === 'Other'
+                                ? document.getElementById('otherProfession').value
+                                : document.getElementById('profession').value,
+                            waNumber: document.getElementById('individualWhatsapp').value,
+                            email: document.getElementById('individualEmail').value,
+                            nation: document.getElementById('individualCountry').value,
+                            province: document.getElementById('individualProvince').value,
+                            studentIdPhoto: studentIdPhoto.data,
+                            studentIdPhotoName: studentIdPhoto.name,
+                            paymentProof: paymentProof.data,
+                            paymentProofName: paymentProof.name,
+                            ticketType: eventType === 'Seminar' ? document.getElementById('ticketType').value : ''
+                        };
+                    }
+                }
+
+                // Send data to Google Apps Script
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Since we're using no-cors, we can't read the response
+                // Show success message
+                showSuccessModal();
+
+                // Reset form
+                this.reset();
+                document.getElementById('teamMembersContainer').innerHTML = '';
+                memberCount = 1;
+                updateMemberCountText();
+                updateSidebar('');
+
+                // Reset form visibility
+                document.getElementById('competitionForm').style.display = 'block';
+                document.getElementById('individualForm').style.display = 'none';
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your registration. Please try again or contact us directly.');
+            } finally {
+                // Restore button state
+                isSubmitting = false;
+                submitBtn.disabled = false;
+                document.getElementById('terms').disabled = false; // Re-enable terms checkbox
+                submitBtn.innerHTML = originalText;
+                lucide.createIcons();
+            }
+        });
+        // Modal Functions
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('active');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('active');
+        }
+    </script>
+
+
+</body>
+
+</html>

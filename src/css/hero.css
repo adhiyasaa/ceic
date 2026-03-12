@@ -1,0 +1,248 @@
+/* =========================================
+   HERO SECTION STYLES
+   ========================================= */
+
+@layer components {
+  .hero-section {
+    min-height: 100vh;
+    @apply flex items-center justify-center relative overflow-hidden;
+    background: linear-gradient(180deg, #2d5a4a 0%, var(--green) 50%, #1e4333 100%);
+    padding: calc(80px + var(--space-12)) 0 var(--space-16);
+  }
+
+
+
+  .hero-section::after {
+    content: '';
+    display: none;
+  }
+
+  /* Wave Background */
+  .hero-waves-container {
+    @apply absolute w-full h-full top-0 left-0 overflow-hidden pointer-events-none;
+    z-index: 1;
+  }
+
+  .wave-svg {
+    @apply absolute w-full h-full left-0 bottom-0;
+  }
+
+  .wave-layer-1 {
+    z-index: 1;
+  }
+
+  .wave-layer-2 {
+    z-index: 2;
+  }
+
+  .wave-layer-3 {
+    z-index: 3;
+  }
+
+  .wave-layer-4 {
+    z-index: 4;
+  }
+
+  /* Hero Container */
+  .hero-container {
+    @apply relative;
+    z-index: 2;
+  }
+
+  .hero-content-wrapper {
+    @apply grid items-center;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-20);
+    max-width: 1200px;
+    @apply mx-auto;
+  }
+
+  .hero-text-content {
+    @apply flex flex-col;
+    gap: var(--space-8);
+  }
+
+  /* Badge */
+  .hero-badge {
+    @apply inline-flex items-center uppercase;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    background: white;
+    border: 2px solid var(--red);
+    border-radius: var(--radius-full);
+    width: fit-content;
+    font-family: var(--font-accent);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .badge-icon {
+    color: var(--red);
+    font-size: 0.8rem;
+  }
+
+  /* Hero Title */
+  .hero-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    color: var(--cream);
+    @apply m-0;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .highlight-text {
+    color: var(--cream-darker);
+    @apply relative inline-block;
+  }
+
+  .highlight-text::after {
+    content: '';
+    @apply absolute;
+    bottom: 10px;
+    left: -4px;
+    right: -4px;
+    height: 14px;
+    background: linear-gradient(90deg, var(--green-100) 0%, var(--green-200) 100%);
+    z-index: -1;
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+
+  /* Hero Description */
+  .hero-description {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--cream-dark);
+    max-width: 540px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* CTA Buttons */
+  .hero-cta {
+    @apply flex items-center flex-wrap;
+    gap: var(--space-4);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    @apply relative flex items-center justify-center;
+    min-height: 500px;
+  }
+
+  .hero-illustration {
+    @apply relative w-full flex items-center justify-center;
+    max-width: 420px;
+    height: 420px;
+  }
+
+  .hero-illustration::before {
+    display: none;
+  }
+
+  .hero-illustration::after {
+    display: none;
+  }
+
+  .hero-logo-img {
+    @apply w-full relative;
+    max-width: 300px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 15px 30px rgba(58, 122, 92, 0.2));
+  }
+
+  .hero-logos-mobile {
+    @apply hidden;
+  }
+
+  /* Responsive Hero */
+  @media (max-width: 900px) {
+    .hero-content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      text-align: center;
+    }
+
+    .hero-text-content {
+      align-items: center;
+    }
+
+    .hero-badge {
+      margin: 0 auto;
+    }
+
+    .hero-logos-mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-6);
+      margin: var(--space-6) 0;
+    }
+
+    .mobile-logo-ceic,
+    .mobile-logo-undip {
+      height: 60px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+    }
+
+    .hero-description {
+      margin: 0 auto;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wave-svg {
+      width: 200%;
+      left: -50%;
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    .mobile-logo-ceic,
+    .mobile-logo-undip {
+      height: 100px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 14px 24px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wave-svg {
+      width: 300%;
+      left: -100%;
+    }
+  }
+}
