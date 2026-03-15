@@ -428,7 +428,7 @@
                 <i data-lucide="check"></i>
             </div>
             <h3 class="modal-title">Registration Successful!</h3>
-            <p class="modal-text">
+            <p class="modal-text" id="successModalText">
                 Thank you for registering for The 14th Season of CEIC. Please confirm via the contact person provided.
             </p>
             <button class="btn-modal" onclick="closeModal()">Close</button>
@@ -1262,8 +1262,7 @@
 
                 // Since we're using no-cors, we can't read the response
                 // Show success message
-                showSuccessModal();
-
+                showSuccessModal(eventType);
                 // Reset form
                 this.reset();
                 document.getElementById('teamMembersContainer').innerHTML = '';
@@ -1288,8 +1287,28 @@
             }
         });
         // Modal Functions
-        function showSuccessModal() {
+        // Modal Functions
+        // Modal Functions
+        function showSuccessModal(eventType) {
             const modal = document.getElementById('successModal');
+            const modalText = document.getElementById('successModalText');
+
+            // Cek apakah event yang di-submit adalah Webinar
+            if (eventType === 'Webinar') {
+                modalText.innerHTML = `
+                    Thank you for registering for The 14th Season of CEIC.<br><br>
+                    Please join the WhatsApp group using the link below:<br>
+                    <a href="https://chat.whatsapp.com/G2l1pfjNto8BzQ1M6CwXOc?mode=gi_t" target="_blank" style="color: #4CAF50; text-decoration: underline; font-weight: 600;">
+                        Join WhatsApp Group
+                    </a>
+                `;
+            } else {
+                // Pesan default untuk event lain
+                modalText.innerHTML = `
+                    Thank you for registering for The 14th Season of CEIC. Please confirm via the contact person provided.
+                `;
+            }
+
             modal.classList.add('active');
             lucide.createIcons();
         }
