@@ -22,6 +22,30 @@
             color: #000 !important;
             font-weight: 500;
         }
+
+        /* Shake animation for invalid referral code */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-4px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(4px);
+            }
+        }
     </style>
 
     <!-- Lucide Icons -->
@@ -89,7 +113,7 @@
         <div class="container">
             <div class="register-form-container compact">
                 <!-- Main Form -->
-                <form class="register-form compact" id="registrationForm">
+                <form class="register-form compact" id="registrationForm" novalidate>
 
                     <!-- Row 1: Event Selection -->
                     <div class="form-row-compact">
@@ -303,6 +327,107 @@
                         </div>
                     </div>
 
+                    <!-- WORKSHOP FORM - Hidden by default -->
+                    <div id="workshopForm" style="display: none;">
+
+                        <!-- Package Selection -->
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="package"></i> Select Your Package
+                            </h3>
+                            <select class="form-select compact" name="workshopPackage" id="workshopPackage"
+                                onchange="handleWorkshopPackageChange()">
+                                <option value="">Select Package *</option>
+                                <option value="Single">Single</option>
+                                <option value="Duo">Duo</option>
+                                <option value="Trio">Trio</option>
+                            </select>
+                        </div>
+
+                        <!-- Referral Code (Single only) -->
+                        <div class="form-section-compact" id="workshopReferralSection" style="display: none;">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="tag"></i> Referral Code
+                            </h3>
+                            <p style="font-size: 0.95rem; color: #222; font-weight: 600; margin-bottom: 0.75rem;">Do you
+                                have a referral code?</p>
+                            <div style="display: flex; gap: 1.25rem; margin-bottom: 0.75rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: #333;">
+                                    <input type="radio" name="hasReferral" value="yes" onchange="toggleReferralInput()"
+                                        style="width: 18px; height: 18px; accent-color: var(--green);"> Yes
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: #333;">
+                                    <input type="radio" name="hasReferral" value="no" onchange="toggleReferralInput()"
+                                        checked style="width: 18px; height: 18px; accent-color: var(--green);"> No
+                                </label>
+                            </div>
+                            <div id="referralCodeInput" style="display: none;">
+                                <p style="font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">Enter your referral
+                                    code and click Verify to apply the discount.</p>
+                                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                                    <input type="text" class="form-input compact" name="referralCode" id="referralCode"
+                                        placeholder="Enter Referral Code" style="flex: 1; text-transform: uppercase;">
+                                    <button type="button" id="verifyReferralBtn" onclick="verifyReferralCode()"
+                                        style="padding: 0.65rem 1.25rem; background: var(--green); color: #fff; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.3s ease; min-height: 42px;">Verify</button>
+                                </div>
+                                <div id="referralErrorMsg"
+                                    style="display: none; margin-top: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); border-radius: 8px; color: #dc3545; font-size: 0.85rem; font-weight: 500;">
+                                    <i data-lucide="alert-circle"
+                                        style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i>
+                                    Invalid referral code. Please check and try again.
+                                </div>
+                                <div id="referralSuccessMsg"
+                                    style="display: none; margin-top: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); border-radius: 8px; color: #2e7d32; font-size: 0.85rem; font-weight: 500;">
+                                    <i data-lucide="check-circle"
+                                        style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i>
+                                    Referral code applied successfully! Discount has been applied.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Personal Information Container -->
+                        <div id="workshopPersonsContainer">
+                            <!-- Will be populated dynamically based on package -->
+                        </div>
+
+                        <!-- Professional Details -->
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="briefcase"></i> Professional Details
+                            </h3>
+                            <select class="form-select compact" name="workshopProfession" id="workshopProfession">
+                                <option value="">Select Category *</option>
+                                <option value="High School">High School</option>
+                                <option value="College">College</option>
+                            </select>
+                        </div>
+
+                        <!-- Documents (Payment Proof) -->
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="file-text"></i> Payment
+                            </h3>
+                            <div class="file-upload-compact">
+                                <label>Payment Proof *</label>
+                                <input type="file" class="form-file compact" name="workshopPaymentProof"
+                                    accept="image/*,.pdf" id="workshopPaymentProof">
+                            </div>
+                        </div>
+
+                        <!-- Workshop Price Display -->
+                        <div class="form-section-compact" id="workshopPriceDisplay" style="display: none;">
+                            <div
+                                style="padding: 1rem; background: rgba(76,175,80,0.08); border-radius: 12px; border-left: 4px solid var(--green); text-align: center;">
+                                <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.25rem;">Your Registration
+                                    Fee</p>
+                                <p id="workshopPriceAmount"
+                                    style="font-size: 1.5rem; font-weight: 700; color: var(--green); margin: 0;"></p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Payment Info Compact -->
                     <div class="payment-info-compact" id="paymentInfo">
                         <div class="payment-accounts">
@@ -435,6 +560,23 @@
         </div>
     </div>
 
+    <!-- Error Modal (Registration Full / Server Error) -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeErrorModal()">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-icon" style="background: rgba(220, 53, 69, 0.1);">
+                <i data-lucide="alert-triangle" style="color: #dc3545;"></i>
+            </div>
+            <h3 class="modal-title" style="color: #dc3545;">Registration Failed</h3>
+            <p class="modal-text" id="errorModalText">
+                An error occurred during registration.
+            </p>
+            <button class="btn-modal" style="background: #dc3545;" onclick="closeErrorModal()">Close</button>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script src="dist/main.js"></script>
     <script>
@@ -536,13 +678,23 @@
                 feeText: 'No payment is required at the abstract submission stage'
             },
             Workshop: {
-                pricing: `<p>Coming Soon</p>`,
-                dates: `<p><strong>Event Date:</strong> 25 - 26 April 2026</p>`,
+                pricing: `
+                    <p><strong>Single:</strong> Rp 250.000</p>
+                    <p><strong>Duo:</strong> Rp 475.000</p>
+                    <p><strong>Trio:</strong> Rp 675.000</p>
+                `,
+                dates: `
+                    <p><strong>Event Date:</strong> 24 - 26 April 2026</p>
+                    <p><strong>Registration:</strong> 6 - 14 April 2026</p>
+                `,
                 contact: `
                     <p><strong>Farid</strong></p>
                     <p>WA: +62 813-7777-6447</p>
+                    <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
+                    <p><strong>Amanda</strong></p>
+                    <p>WA: +62 812 2700 0128</p>
                 `,
-                feeText: 'Coming Soon'
+                feeText: 'Single: Rp 250.000 | Duo: Rp 475.000 | Trio: Rp 675.000'
             },
             Seminar: {
                 pricing: `<p>Coming Soon</p>`,
@@ -621,33 +773,275 @@
         function toggleFormType(eventValue) {
             const competitionForm = document.getElementById('competitionForm');
             const individualForm = document.getElementById('individualForm');
+            const workshopForm = document.getElementById('workshopForm');
             const mainEvents = ['Workshop', 'Seminar', 'Webinar', 'COMPEX'];
 
-            if (mainEvents.includes(eventValue)) {
-                // Show individual form for main events
-                competitionForm.style.display = 'none';
+            // Hide all forms first
+            competitionForm.style.display = 'none';
+            individualForm.style.display = 'none';
+            workshopForm.style.display = 'none';
+            toggleRequiredFields('competitionForm', false);
+            toggleRequiredFields('individualForm', false);
+            toggleRequiredFields('workshopForm', false);
+
+            if (eventValue === 'Workshop') {
+                // Show workshop-specific form
+                workshopForm.style.display = 'block';
+                toggleRequiredFields('workshopForm', true);
+                // Hide default payment info (workshop has its own price display)
+                document.getElementById('paymentInfo').style.display = 'none';
+                // Explicitly disable individual payment proof to prevent validation issues
+                const indPayment = document.getElementById('individualPaymentProof');
+                if (indPayment) {
+                    indPayment.required = false;
+                    indPayment.disabled = true;
+                }
+                // Reset workshop form state
+                resetWorkshopForm();
+            } else if (mainEvents.includes(eventValue)) {
+                // Show individual form for other main events
                 individualForm.style.display = 'block';
-
-                // Disable required validation for competition fields
-                toggleRequiredFields('competitionForm', false);
-                // Enable required validation for individual fields
                 toggleRequiredFields('individualForm', true);
-
-                // IMPORTANT: Call updatePaymentProofVisibility AFTER toggleRequiredFields
-                // to properly disable event-specific fields like ticketType
                 updatePaymentProofVisibility(eventValue);
             } else {
                 // Show competition form for competitions
                 competitionForm.style.display = 'block';
-                individualForm.style.display = 'none';
-
-                // Enable required validation for competition fields
                 toggleRequiredFields('competitionForm', true);
-                // Disable required validation for individual fields
-                toggleRequiredFields('individualForm', false);
             }
 
             lucide.createIcons();
+        }
+
+        // ===== WORKSHOP-SPECIFIC FUNCTIONS =====
+
+        function resetWorkshopForm() {
+            const packageSelect = document.getElementById('workshopPackage');
+            packageSelect.value = '';
+            document.getElementById('workshopReferralSection').style.display = 'none';
+            document.getElementById('workshopPersonsContainer').innerHTML = '';
+            document.getElementById('workshopPriceDisplay').style.display = 'none';
+            // Reset referral state
+            referralVerified = false;
+            const noRadio = document.querySelector('input[name="hasReferral"][value="no"]');
+            if (noRadio) noRadio.checked = true;
+            const referralInput = document.getElementById('referralCodeInput');
+            if (referralInput) referralInput.style.display = 'none';
+            const referralCode = document.getElementById('referralCode');
+            if (referralCode) {
+                referralCode.value = '';
+                referralCode.removeAttribute('required');
+                referralCode.disabled = false;
+                referralCode.style.borderColor = '';
+                referralCode.style.background = '';
+            }
+            // Reset messages and verify button
+            hideReferralMessages();
+            const verifyBtn = document.getElementById('verifyReferralBtn');
+            if (verifyBtn) {
+                verifyBtn.textContent = 'Verify';
+                verifyBtn.style.background = 'var(--green)';
+                verifyBtn.disabled = false;
+            }
+        }
+
+        function handleWorkshopPackageChange() {
+            const packageValue = document.getElementById('workshopPackage').value;
+            const referralSection = document.getElementById('workshopReferralSection');
+            const personsContainer = document.getElementById('workshopPersonsContainer');
+            const priceDisplay = document.getElementById('workshopPriceDisplay');
+            const priceAmount = document.getElementById('workshopPriceAmount');
+
+            // Reset referral when changing package
+            referralVerified = false;
+            const noRadio = document.querySelector('input[name="hasReferral"][value="no"]');
+            if (noRadio) noRadio.checked = true;
+            const referralInput = document.getElementById('referralCodeInput');
+            if (referralInput) referralInput.style.display = 'none';
+            const referralCode = document.getElementById('referralCode');
+            if (referralCode) {
+                referralCode.value = '';
+                referralCode.removeAttribute('required');
+                referralCode.disabled = false;
+                referralCode.style.borderColor = '';
+                referralCode.style.background = '';
+            }
+            hideReferralMessages();
+            const verifyBtn = document.getElementById('verifyReferralBtn');
+            if (verifyBtn) {
+                verifyBtn.textContent = 'Verify';
+                verifyBtn.style.background = 'var(--green)';
+                verifyBtn.disabled = false;
+            }
+
+            if (!packageValue) {
+                referralSection.style.display = 'none';
+                personsContainer.innerHTML = '';
+                priceDisplay.style.display = 'none';
+                return;
+            }
+
+            // Show/hide referral section (Single only)
+            referralSection.style.display = packageValue === 'Single' ? 'block' : 'none';
+
+            // Generate personal info sections based on package
+            const count = packageValue === 'Single' ? 1 : packageValue === 'Duo' ? 2 : 3;
+            generateWorkshopPersonForms(count);
+
+            // Update price display
+            updateWorkshopPrice();
+
+            lucide.createIcons();
+        }
+
+        // Track whether referral code has been verified
+        let referralVerified = false;
+
+        function toggleReferralInput() {
+            const hasReferral = document.querySelector('input[name="hasReferral"]:checked')?.value;
+            const referralInput = document.getElementById('referralCodeInput');
+            const referralCode = document.getElementById('referralCode');
+
+            // Reset verification state
+            referralVerified = false;
+            hideReferralMessages();
+
+            if (hasReferral === 'yes') {
+                referralInput.style.display = 'block';
+                referralCode.setAttribute('required', '');
+                referralCode.value = '';
+                referralCode.disabled = false;
+                document.getElementById('verifyReferralBtn').disabled = false;
+                document.getElementById('verifyReferralBtn').textContent = 'Verify';
+                document.getElementById('verifyReferralBtn').style.background = 'var(--green)';
+            } else {
+                referralInput.style.display = 'none';
+                referralCode.removeAttribute('required');
+                referralCode.value = '';
+            }
+
+            // Update price and student ID requirement
+            updateWorkshopPrice();
+            updateWorkshopStudentIdRequirement();
+        }
+
+        function hideReferralMessages() {
+            document.getElementById('referralErrorMsg').style.display = 'none';
+            document.getElementById('referralSuccessMsg').style.display = 'none';
+        }
+
+        function verifyReferralCode() {
+            const referralCode = document.getElementById('referralCode').value.trim().toUpperCase();
+            const errorMsg = document.getElementById('referralErrorMsg');
+            const successMsg = document.getElementById('referralSuccessMsg');
+            const verifyBtn = document.getElementById('verifyReferralBtn');
+            const referralInput = document.getElementById('referralCode');
+
+            hideReferralMessages();
+
+            if (!referralCode) {
+                errorMsg.innerHTML = '<i data-lucide="alert-circle" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i> Please enter a referral code first.';
+                errorMsg.style.display = 'block';
+                lucide.createIcons();
+                return;
+            }
+
+            if (referralCode === 'BIMCEICXIV') {
+                referralVerified = true;
+                successMsg.style.display = 'block';
+                referralInput.disabled = true;
+                referralInput.value = 'BIMCEICXIV';
+                referralInput.style.background = 'rgba(76, 175, 80, 0.05)';
+                referralInput.style.borderColor = '#4CAF50';
+                verifyBtn.textContent = '✓ Verified';
+                verifyBtn.style.background = '#2e7d32';
+                verifyBtn.disabled = true;
+            } else {
+                referralVerified = false;
+                errorMsg.innerHTML = '<i data-lucide="alert-circle" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i> Invalid referral code. Please check and try again.';
+                errorMsg.style.display = 'block';
+                referralInput.style.borderColor = '#dc3545';
+                // Shake animation
+                referralInput.style.animation = 'shake 0.5s ease';
+                setTimeout(() => { referralInput.style.animation = ''; }, 500);
+            }
+
+            lucide.createIcons();
+
+            // Update price and student ID requirement
+            updateWorkshopPrice();
+            updateWorkshopStudentIdRequirement();
+        }
+
+        function generateWorkshopPersonForms(count) {
+            const container = document.getElementById('workshopPersonsContainer');
+            container.innerHTML = '';
+
+            const hasReferral = referralVerified;
+
+            for (let i = 1; i <= count; i++) {
+                const personHtml = `
+                    <div class="form-section-compact" style="margin-bottom: 1rem; padding-bottom: 1rem; ${i < count ? 'border-bottom: 1px dashed #eee;' : ''}">
+                        <h3 class="form-section-title-compact">
+                            <i data-lucide="user"></i> Personal Information ${count > 1 ? '- Person ' + i : ''}
+                        </h3>
+                        <div class="form-grid-2">
+                            <input type="text" class="form-input compact" name="workshopName${i}" placeholder="Name *" required>
+                            <input type="text" class="form-input compact" name="workshopMajor${i}" placeholder="Major *" required>
+                            <input type="text" class="form-input compact" name="workshopInstitution${i}" placeholder="Institution *" required>
+                            <input type="tel" class="form-input compact" name="workshopWhatsapp${i}" placeholder="WhatsApp Number *" required>
+                            <input type="email" class="form-input compact" name="workshopEmail${i}" placeholder="Email *" required>
+                        </div>
+                        <div style="margin-top: 0.75rem;">
+                            <div class="file-upload-compact">
+                                <label>Student ID ${hasReferral ? '*' : '(Optional)'}</label>
+                                <input type="file" class="form-file compact" name="workshopStudentId${i}" accept="image/*,.pdf" ${hasReferral ? 'required' : ''}>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', personHtml);
+            }
+            lucide.createIcons();
+        }
+
+        function updateWorkshopStudentIdRequirement() {
+            const hasReferral = referralVerified;
+            const packageValue = document.getElementById('workshopPackage').value;
+            if (packageValue) {
+                const count = packageValue === 'Single' ? 1 : packageValue === 'Duo' ? 2 : 3;
+                generateWorkshopPersonForms(count);
+            }
+        }
+
+        function updateWorkshopPrice() {
+            const packageValue = document.getElementById('workshopPackage').value;
+            const priceDisplay = document.getElementById('workshopPriceDisplay');
+            const priceAmount = document.getElementById('workshopPriceAmount');
+
+            if (!packageValue) {
+                priceDisplay.style.display = 'none';
+                return;
+            }
+
+            priceDisplay.style.display = 'block';
+
+            if (packageValue === 'Single') {
+                if (referralVerified) {
+                    priceAmount.textContent = 'Rp 235.000 (Single w/ Referral Code)';
+                } else {
+                    priceAmount.textContent = 'Rp 250.000 (Single w/o Referral Code)';
+                }
+            } else if (packageValue === 'Duo') {
+                priceAmount.textContent = 'Rp 475.000 (Duo Package)';
+            } else if (packageValue === 'Trio') {
+                priceAmount.textContent = 'Rp 675.000 (Trio Package)';
+            }
+
+            // Also update the fee display in payment info
+            const feeDisplay = document.getElementById('feeDisplay');
+            if (feeDisplay) {
+                feeDisplay.textContent = priceAmount.textContent;
+            }
         }
 
         // Toggle required attribute on form fields
@@ -662,6 +1056,9 @@
 
             const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="file"], select');
             inputs.forEach(input => {
+                // Skip referral code input - its required state is managed manually
+                if (input.id === 'referralCode') return;
+
                 let shouldBeRequired = false;
 
                 // Check placeholder for text/select inputs
@@ -1030,7 +1427,8 @@
         }
 
         // Google Apps Script deployment URL
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzs0Bs5YJnBYVBNEUFcrsE-CIspE9jdfxQDyoZ7hDxRCP3x32yqXalXI0GG5AIaXwP/exec';
+        // Google Apps Script deployment URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUp6007jRqQxaN6ItZt1guqkI6p1wbHHSCjcaw86xjN7wfTDizwI1PN1TF0nCiAY6-/exec';
 
         // Competition events (team-based)
         const COMPETITION_EVENTS = ['IBDC', 'IBIC', 'IDIC', 'IPIC'];
@@ -1107,6 +1505,18 @@
 
             if (isSubmitting) return;
 
+            // Manual validation check (since form has novalidate)
+            const form = document.getElementById('registrationForm');
+            const allInvalid = form.querySelectorAll(':invalid');
+            let hasVisibleInvalid = false;
+            for (const el of allInvalid) {
+                if (el !== form && !el.disabled && el.offsetParent !== null) {
+                    hasVisibleInvalid = true;
+                    break;
+                }
+            }
+            if (hasVisibleInvalid) return; // Click handler already shows the error
+
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
 
@@ -1160,8 +1570,48 @@
                         paymentProof: paymentProof.data,
                         paymentProofName: paymentProof.name
                     };
+                } else if (eventType === 'Workshop') {
+                    // Workshop form data
+                    const packageValue = document.getElementById('workshopPackage').value;
+                    const hasReferral = referralVerified;
+                    const referralCodeValue = hasReferral ? document.getElementById('referralCode').value : '';
+                    const count = packageValue === 'Single' ? 1 : packageValue === 'Duo' ? 2 : 3;
+
+                    // Collect payment proof
+                    const paymentFile = document.getElementById('workshopPaymentProof').files[0];
+                    const paymentProof = await fileToBase64(paymentFile);
+
+                    // Collect student ID files
+                    const studentIdPromises = [];
+                    for (let i = 1; i <= count; i++) {
+                        const fileInput = document.querySelector(`input[name="workshopStudentId${i}"]`);
+                        studentIdPromises.push(fileToBase64(fileInput?.files[0]));
+                    }
+                    const studentIds = await Promise.all(studentIdPromises);
+
+                    formData = {
+                        event: eventType,
+                        package: packageValue,
+                        hasReferral: hasReferral ? 'Yes' : 'No',
+                        referralCode: referralCodeValue,
+                        profession: document.getElementById('workshopProfession').value,
+                        paymentProof: paymentProof.data,
+                        paymentProofName: paymentProof.name
+                    };
+
+                    // Add person data
+                    for (let i = 1; i <= count; i++) {
+                        formData[`person${i}_name`] = document.querySelector(`input[name="workshopName${i}"]`)?.value || '';
+                        formData[`person${i}_major`] = document.querySelector(`input[name="workshopMajor${i}"]`)?.value || '';
+                        formData[`person${i}_institution`] = document.querySelector(`input[name="workshopInstitution${i}"]`)?.value || '';
+                        formData[`person${i}_whatsapp`] = document.querySelector(`input[name="workshopWhatsapp${i}"]`)?.value || '';
+                        formData[`person${i}_email`] = document.querySelector(`input[name="workshopEmail${i}"]`)?.value || '';
+                        formData[`person${i}_studentId`] = studentIds[i - 1]?.data || '';
+                        formData[`person${i}_studentIdName`] = studentIds[i - 1]?.name || '';
+                    }
+
                 } else {
-                    // Individual form data (Workshop, Seminar, COMPEX)
+                    // Individual form data (Seminar, COMPEX, Webinar)
                     // Special Handling for Seminar Bundled Tickets
                     if (eventType === 'Seminar') {
                         const studentIdFile = document.getElementById('individualStudentIdPhoto').files[0];
@@ -1253,30 +1703,40 @@
                 // Send data to Google Apps Script
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'text/plain',
                     },
                     body: JSON.stringify(formData)
                 });
 
-                // Since we're using no-cors, we can't read the response
-                // Show success message
-                showSuccessModal(eventType);
-                // Reset form
-                this.reset();
-                document.getElementById('teamMembersContainer').innerHTML = '';
-                memberCount = 1;
-                updateMemberCountText();
-                updateSidebar('');
+                const result = await response.json();
 
-                // Reset form visibility
-                document.getElementById('competitionForm').style.display = 'block';
-                document.getElementById('individualForm').style.display = 'none';
+                if (result.status === 'error') {
+                    // Show error modal (quota full or server error)
+                    showErrorModal(result.message);
+                } else {
+                    // Show success message
+                    showSuccessModal(eventType);
+                    // Reset form
+                    this.reset();
+                    document.getElementById('teamMembersContainer').innerHTML = '';
+                    memberCount = 1;
+                    updateMemberCountText();
+                    updateSidebar('');
+
+                    // Reset form visibility
+                    document.getElementById('competitionForm').style.display = 'block';
+                    document.getElementById('individualForm').style.display = 'none';
+                    document.getElementById('workshopForm').style.display = 'none';
+                    document.getElementById('paymentInfo').style.display = 'block';
+                    // Reset workshop containers
+                    document.getElementById('workshopPersonsContainer').innerHTML = '';
+                    document.getElementById('workshopPriceDisplay').style.display = 'none';
+                }
 
             } catch (error) {
                 console.error('Submission error:', error);
-                alert('There was an error submitting your registration. Please try again or contact us directly.');
+                showErrorModal('There was an error submitting your registration. Please try again or contact us directly.');
             } finally {
                 // Restore button state
                 isSubmitting = false;
@@ -1293,7 +1753,6 @@
             const modal = document.getElementById('successModal');
             const modalText = document.getElementById('successModalText');
 
-            // Cek apakah event yang di-submit adalah Webinar
             if (eventType === 'Webinar') {
                 modalText.innerHTML = `
                     Thank you for registering for The 14th Season of CEIC.<br><br>
@@ -1302,8 +1761,15 @@
                         Join WhatsApp Group
                     </a>
                 `;
+            } else if (eventType === 'Workshop') {
+                modalText.innerHTML = `
+                    Terima kasih sudah mendaftar BIM WORKSHOP CEIC SEASON XIV.<br><br>
+                    Silahkan klik link untuk bergabung ke Group Chat BIM Workshop:<br>
+                    <a href="https://chat.whatsapp.com/I9V71VCdT9vByxyZAg7MQg?mode=gi_t" target="_blank" style="color: #4CAF50; text-decoration: underline; font-weight: 600;">
+                        Join WhatsApp Group BIM Workshop
+                    </a>
+                `;
             } else {
-                // Pesan default untuk event lain
                 modalText.innerHTML = `
                     Thank you for registering for The 14th Season of CEIC. Please confirm via the contact person provided.
                 `;
@@ -1315,6 +1781,19 @@
 
         function closeModal() {
             const modal = document.getElementById('successModal');
+            modal.classList.remove('active');
+        }
+
+        function showErrorModal(message) {
+            const modal = document.getElementById('errorModal');
+            const modalText = document.getElementById('errorModalText');
+            modalText.textContent = message;
+            modal.classList.add('active');
+            lucide.createIcons();
+        }
+
+        function closeErrorModal() {
+            const modal = document.getElementById('errorModal');
             modal.classList.remove('active');
         }
     </script>
