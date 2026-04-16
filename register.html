@@ -434,9 +434,20 @@
                             <h3 class="form-section-title-compact">
                                 <i data-lucide="package"></i> Select Your Package
                             </h3>
+                            <select class="form-select compact" name="seminarAttendance" id="seminarAttendance"
+                                onchange="handleSeminarAttendanceChange()">
+                                <option value="">Select Package *</option>
+                                <option value="Online">Online</option>
+                                <option value="Offline">Offline</option>
+                            </select>
+                        </div>
+                        <div class="form-section-compact" id="seminarOfflinePackageSection" style="display: none;">
+                            <h3 class="form-section-title-compact" style="font-size: 1rem; color: #555;">
+                                <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i> Offline Option
+                            </h3>
                             <select class="form-select compact" name="seminarPackage" id="seminarPackage"
                                 onchange="handleSeminarPackageChange()">
-                                <option value="">Select Package *</option>
+                                <option value="">Select Option *</option>
                                 <option value="Single">Single</option>
                                 <option value="Duo">Duo</option>
                                 <option value="Trio">Trio</option>
@@ -781,10 +792,11 @@
             },
             Seminar: {
                 pricing: `
-                    <p><strong>Single (Internal):</strong> Rp 80.000</p>
-                    <p><strong>Single (External):</strong> Rp 90.000</p>
-                    <p><strong>Bundling 2 (Duo):</strong> Rp 170.000</p>
-                    <p><strong>Bundling 3 (Trio):</strong> Rp 250.000</p>
+                    <p><strong>Online:</strong> Rp 50.000</p>
+                    <p><strong>Offline Single (Internal):</strong> Rp 80.000</p>
+                    <p><strong>Offline Single (External):</strong> Rp 90.000</p>
+                    <p><strong>Offline Bundling 2 (Duo):</strong> Rp 170.000</p>
+                    <p><strong>Offline Bundling 3 (Trio):</strong> Rp 250.000</p>
                 `,
                 dates: `<p><strong>Event Date:</strong> 23 May 2026</p>`,
                 contact: `
@@ -812,7 +824,7 @@
                         <li>No smoking inside the venue</li>
                     </ul>
                 `,
-                feeText: 'Single: Rp 80k/90k | Bundling 2: Rp 170k | Bundling 3: Rp 250k'
+                feeText: 'Online: Rp 50k | Offline: 80k/90k/170k/250k'
             },
             Webinar: {
                 pricing: `
@@ -947,8 +959,15 @@
         let seminarReferralVerified = false;
 
         function resetSeminarForm() {
+            const attendanceSelect = document.getElementById('seminarAttendance');
+            if (attendanceSelect) attendanceSelect.value = '';
+            
+            const offlineSection = document.getElementById('seminarOfflinePackageSection');
+            if (offlineSection) offlineSection.style.display = 'none';
+
             const packageSelect = document.getElementById('seminarPackage');
             if (packageSelect) packageSelect.value = '';
+
             const referralSection = document.getElementById('seminarReferralSection');
             if (referralSection) referralSection.style.display = 'none';
             const personsContainer = document.getElementById('seminarPersonsContainer');
@@ -980,6 +999,30 @@
                 verifyBtn.style.background = 'var(--green)';
                 verifyBtn.disabled = false;
             }
+        }
+
+        function handleSeminarAttendanceChange() {
+            const attendanceValue = document.getElementById('seminarAttendance').value;
+            const offlineSection = document.getElementById('seminarOfflinePackageSection');
+            const packageSelect = document.getElementById('seminarPackage');
+            const referralSection = document.getElementById('seminarReferralSection');
+            
+            // clear states
+            referralSection.style.display = 'none';
+            document.getElementById('seminarPersonsContainer').innerHTML = '';
+            document.getElementById('seminarPriceDisplay').style.display = 'none';
+            packageSelect.value = '';
+
+            if (attendanceValue === 'Online') {
+                offlineSection.style.display = 'none';
+                updateSeminarPrice();
+                generateSeminarPersonForms(1);
+            } else if (attendanceValue === 'Offline') {
+                offlineSection.style.display = 'block';
+            } else {
+                offlineSection.style.display = 'none';
+            }
+            lucide.createIcons();
         }
 
         function handleSeminarPackageChange() {
@@ -1076,10 +1119,24 @@
         }
 
         function updateSeminarPrice() {
+            const attendanceValue = document.getElementById('seminarAttendance').value;
             const packageValue = document.getElementById('seminarPackage').value;
             const priceDisplay = document.getElementById('seminarPriceDisplay');
             const priceAmount = document.getElementById('seminarPriceAmount');
             const feeDisplay = document.getElementById('feeDisplay');
+
+            if (!attendanceValue) {
+                priceDisplay.style.display = 'none';
+                return;
+            }
+
+            if (attendanceValue === 'Online') {
+                priceDisplay.style.display = 'block';
+                const amountText = 'Rp 50.000 (Online Package)';
+                priceAmount.textContent = amountText;
+                if (feeDisplay) feeDisplay.textContent = amountText;
+                return;
+            }
 
             if (!packageValue) {
                 priceDisplay.style.display = 'none';
@@ -1109,8 +1166,9 @@
             const container = document.getElementById('seminarPersonsContainer');
             container.innerHTML = '';
 
+            const attendanceValue = document.getElementById('seminarAttendance').value;
             const packageValue = document.getElementById('seminarPackage').value;
-            const isInternal = packageValue === 'Single' && seminarReferralVerified;
+            const isInternal = attendanceValue === 'Offline' && packageValue === 'Single' && seminarReferralVerified;
 
             for (let i = 1; i <= count; i++) {
                 let extraFields = '';
@@ -1938,10 +1996,15 @@
                     }
 
                 } else if (eventType === 'Seminar') {
+                    const attendanceValue = document.getElementById('seminarAttendance').value;
                     const packageValue = document.getElementById('seminarPackage').value;
                     const hasReferral = seminarReferralVerified;
                     const referralCodeValue = hasReferral ? document.getElementById('seminarReferralCode').value : '';
-                    const count = packageValue === 'Single' ? 1 : packageValue === 'Duo' ? 2 : 3;
+                    
+                    let count = 1;
+                    if (attendanceValue === 'Offline') {
+                        count = packageValue === 'Single' ? 1 : (packageValue === 'Duo' ? 2 : 3);
+                    }
 
                     const paymentFile = document.getElementById('seminarPaymentProof').files[0];
                     const paymentProof = await fileToBase64(paymentFile);
@@ -1955,6 +2018,7 @@
 
                     formData = {
                         event: eventType,
+                        attendance: attendanceValue,
                         package: packageValue,
                         hasReferral: hasReferral ? 'Yes' : 'No',
                         referralCode: referralCodeValue,
