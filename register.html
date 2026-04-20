@@ -330,6 +330,18 @@
                     <!-- WORKSHOP FORM - Hidden by default -->
                     <div id="workshopForm" style="display: none;">
 
+                        <!-- Professional Details -->
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="briefcase"></i> Professional Details
+                            </h3>
+                            <select class="form-select compact" name="workshopProfession" id="workshopProfession" onchange="updateWorkshopPrice()">
+                                <option value="">Select Category *</option>
+                                <option value="High School">High School</option>
+                                <option value="College">College</option>
+                            </select>
+                        </div>
+
                         <!-- Package Selection -->
                         <div class="form-section-compact">
                             <h3 class="form-section-title-compact">
@@ -390,18 +402,6 @@
                         <!-- Dynamic Personal Information Container -->
                         <div id="workshopPersonsContainer">
                             <!-- Will be populated dynamically based on package -->
-                        </div>
-
-                        <!-- Professional Details -->
-                        <div class="form-section-compact">
-                            <h3 class="form-section-title-compact">
-                                <i data-lucide="briefcase"></i> Professional Details
-                            </h3>
-                            <select class="form-select compact" name="workshopProfession" id="workshopProfession">
-                                <option value="">Select Category *</option>
-                                <option value="High School">High School</option>
-                                <option value="College">College</option>
-                            </select>
                         </div>
 
                         <!-- Documents (Payment Proof) -->
@@ -1229,6 +1229,7 @@
             packageSelect.value = '';
             document.getElementById('workshopReferralSection').style.display = 'none';
             document.getElementById('workshopPersonsContainer').innerHTML = '';
+            document.getElementById('workshopProfession').value = '';
             document.getElementById('workshopPriceDisplay').style.display = 'none';
             // Reset referral state
             referralVerified = false;
@@ -1355,16 +1356,18 @@
                 return;
             }
 
-            if (referralCode === 'BIMCEICXIV') {
+            if (referralCode === 'BIMCEICXIV' || referralCode === 'LOMBACEICXIV') {
                 referralVerified = true;
                 successMsg.style.display = 'block';
                 referralInput.disabled = true;
-                referralInput.value = 'BIMCEICXIV';
+                referralInput.value = referralCode;
                 referralInput.style.background = 'rgba(76, 175, 80, 0.05)';
                 referralInput.style.borderColor = '#4CAF50';
                 verifyBtn.textContent = '✓ Verified';
                 verifyBtn.style.background = '#2e7d32';
                 verifyBtn.disabled = true;
+                // Store verified code for pricing logic
+                referralInput.dataset.verifiedCode = referralCode;
             } else {
                 referralVerified = false;
                 errorMsg.innerHTML = '<i data-lucide="alert-circle" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i> Invalid referral code. Please check and try again.';
@@ -1424,27 +1427,47 @@
         }
 
         function updateWorkshopPrice() {
+            const professionValue = document.getElementById('workshopProfession').value;
             const packageValue = document.getElementById('workshopPackage').value;
             const priceDisplay = document.getElementById('workshopPriceDisplay');
             const priceAmount = document.getElementById('workshopPriceAmount');
+            const referralCodeInput = document.getElementById('referralCode');
 
-            if (!packageValue) {
+            if (!professionValue || !packageValue) {
                 priceDisplay.style.display = 'none';
                 return;
             }
 
             priceDisplay.style.display = 'block';
 
-            if (packageValue === 'Single') {
-                if (referralVerified) {
-                    priceAmount.textContent = 'Rp 235.000 (Single w/ Referral Code)';
-                } else {
-                    priceAmount.textContent = 'Rp 250.000 (Single w/o Referral Code)';
+            if (professionValue === 'High School') {
+                if (packageValue === 'Single') {
+                    if (referralVerified && referralCodeInput.dataset.verifiedCode === 'LOMBACEICXIV') {
+                        priceAmount.textContent = 'Rp 175.000 (Single w/ LOMBACEICXIV Referral Code)';
+                    } else if (referralVerified && referralCodeInput.dataset.verifiedCode === 'BIMCEICXIV') {
+                        priceAmount.textContent = 'Rp 185.000 (Single w/ BIMCEICXIV Referral Code)';
+                    } else {
+                        priceAmount.textContent = 'Rp 200.000 (Single High School)';
+                    }
+                } else if (packageValue === 'Duo') {
+                    priceAmount.textContent = 'Rp 380.000 (Duo High School Package)';
+                } else if (packageValue === 'Trio') {
+                    priceAmount.textContent = 'Rp 525.000 (Trio High School Package)';
                 }
-            } else if (packageValue === 'Duo') {
-                priceAmount.textContent = 'Rp 475.000 (Duo Package)';
-            } else if (packageValue === 'Trio') {
-                priceAmount.textContent = 'Rp 675.000 (Trio Package)';
+            } else { // College or default
+                if (packageValue === 'Single') {
+                    if (referralVerified && referralCodeInput.dataset.verifiedCode === 'LOMBACEICXIV') {
+                        priceAmount.textContent = 'Rp 175.000 (Single w/ LOMBACEICXIV Referral Code)';
+                    } else if (referralVerified && referralCodeInput.dataset.verifiedCode === 'BIMCEICXIV') {
+                        priceAmount.textContent = 'Rp 235.000 (Single w/ BIMCEICXIV Referral Code)';
+                    } else {
+                        priceAmount.textContent = 'Rp 250.000 (Single College w/o Referral Code)';
+                    }
+                } else if (packageValue === 'Duo') {
+                    priceAmount.textContent = 'Rp 475.000 (Duo College Package)';
+                } else if (packageValue === 'Trio') {
+                    priceAmount.textContent = 'Rp 675.000 (Trio College Package)';
+                }
             }
 
             // Also update the fee display in payment info
