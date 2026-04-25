@@ -123,13 +123,13 @@
                             </h3>
                             <select class="form-select compact" name="event" id="eventSelect" required>
                                 <option value="">Select Event</option>
+                                <option value="Seminar">National Seminar</option>
                                 <option value="Workshop">BIM Workshop</option>
                                 <option value="Webinar">Webinar SKK Konstruksi Jenjang 6</option>
                                 <option value="IBDC">IBDC - Bridge Design</option>
                                 <option value="IBIC">IBIC - BIM Innovation</option>
                                 <option value="IDIC">IDIC - Dam Innovation</option>
                                 <option value="IPIC">IPIC - Paper Innovation</option>
-                                <option value="Seminar">National Seminar</option>
                                 <option value="COMPEX">Company Expo (COMPEX)</option>
                             </select>
                         </div>
@@ -335,7 +335,8 @@
                             <h3 class="form-section-title-compact">
                                 <i data-lucide="briefcase"></i> Professional Details
                             </h3>
-                            <select class="form-select compact" name="workshopProfession" id="workshopProfession" onchange="updateWorkshopPrice()">
+                            <select class="form-select compact" name="workshopProfession" id="workshopProfession"
+                                onchange="updateWorkshopPrice()">
                                 <option value="">Select Category *</option>
                                 <option value="High School">High School</option>
                                 <option value="College">College</option>
@@ -961,7 +962,7 @@
         function resetSeminarForm() {
             const attendanceSelect = document.getElementById('seminarAttendance');
             if (attendanceSelect) attendanceSelect.value = '';
-            
+
             const offlineSection = document.getElementById('seminarOfflinePackageSection');
             if (offlineSection) offlineSection.style.display = 'none';
 
@@ -1006,7 +1007,7 @@
             const offlineSection = document.getElementById('seminarOfflinePackageSection');
             const packageSelect = document.getElementById('seminarPackage');
             const referralSection = document.getElementById('seminarReferralSection');
-            
+
             // clear states
             referralSection.style.display = 'none';
             document.getElementById('seminarPersonsContainer').innerHTML = '';
@@ -2023,7 +2024,7 @@
                     const packageValue = document.getElementById('seminarPackage').value;
                     const hasReferral = seminarReferralVerified;
                     const referralCodeValue = hasReferral ? document.getElementById('seminarReferralCode').value : '';
-                    
+
                     let count = 1;
                     if (attendanceValue === 'Offline') {
                         count = packageValue === 'Single' ? 1 : (packageValue === 'Duo' ? 2 : 3);
