@@ -11,7 +11,10 @@ content = content.replace(
                     <p><strong>Bundling 2 (Duo):</strong> Rp 170.000</p>
                     <p><strong>Bundling 3 (Trio):</strong> Rp 250.000</p>
                 \`,
-                dates: \`<p><strong>Event Date:</strong> 23 May 2026</p>\`,
+                dates: \`
+                    <p><strong>Event Date:</strong> 23 May 2026</p>
+                    <p><strong>Registration:</strong> 5 - 15 May 2026</p>
+                \`,
                 contact: \`
                     <p><strong>Vita</strong></p>
                     <p>WA: +62 821-3411-0186</p>
