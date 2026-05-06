@@ -516,6 +516,162 @@
                         </div>
                     </div>
 
+                    <!-- COMPEX FORM - Hidden by default -->
+                    <div id="compexForm" style="display: none;">
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="user"></i> Personal Information
+                            </h3>
+                            <div class="form-grid-2">
+                                <input type="text" class="form-input compact" name="compexName" id="compexName"
+                                    placeholder="Full Name *">
+                                <input type="text" class="form-input compact" name="compexInstitution"
+                                    id="compexInstitution" placeholder="Institution *">
+                                <input type="tel" class="form-input compact" name="compexWhatsapp" id="compexWhatsapp"
+                                    placeholder="WhatsApp Number *">
+                                <input type="email" class="form-input compact" name="compexEmail" id="compexEmail"
+                                    placeholder="Email Address *">
+                            </div>
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="briefcase"></i> Professional Details
+                            </h3>
+                            <select class="form-select compact" name="compexProfession" id="compexProfession"
+                                onchange="toggleCompexOtherProfession()">
+                                <option value="">Select Profession *</option>
+                                <option value="Student">Student</option>
+                                <option value="Student">Fresh graduates / Alumni</option>
+                                <option value="Industry Practitioner">Industry Practitioner</option>
+                                <option value="Corporate Professional">Corporate Professional</option>
+                                <option value="Other">Other (please specify)</option>
+                            </select>
+                            <input type="text" class="form-input compact" name="compexOtherProfession"
+                                id="compexOtherProfession" placeholder="Please specify your profession *"
+                                style="display: none; margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-section-compact">
+                            <h3 class="form-section-title-compact">
+                                <i data-lucide="message-square"></i> Feedback
+                            </h3>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Seberapa puas kamu dengan keseluruhan acara Compex hari ini? *</p>
+                            <select class="form-select compact" name="compexOverallSatisfaction"
+                                id="compexOverallSatisfaction">
+                                <option value="">Skala Bintang 1 - 5 *</option>
+                                <option value="5">5 - Sangat Puas</option>
+                                <option value="4">4 - Puas</option>
+                                <option value="3">3 - Cukup</option>
+                                <option value="2">2 - Kurang Puas</option>
+                                <option value="1">1 - Sangat Kurang</option>
+                            </select>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Apakah perusahaan yang diundang sudah sesuai dengan ekspektasi/kebutuhanmu? *</p>
+                            <select class="form-select compact" name="compexExpectation" id="compexExpectation">
+                                <option value="">Skala Bintang 1 - 5 *</option>
+                                <option value="5">5 - Sangat Sesuai</option>
+                                <option value="4">4 - Sesuai</option>
+                                <option value="3">3 - Cukup</option>
+                                <option value="2">2 - Kurang Sesuai</option>
+                                <option value="1">1 - Sangat Kurang</option>
+                            </select>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Booth perusahaan mana yang paling berkesan/menarik buatmu hari ini? *</p>
+                            <select class="form-select compact" name="compexBestBooth" id="compexBestBooth">
+                                <option value="">Pilih Perusahaan Exhibitor *</option>
+                                <option value="PT. Adhi Karya">PT. Adhi Karya</option>
+                                <option value="PT. Waskita Karya">PT. Waskita Karya</option>
+                                <option value="PT. Wijaya Karya">PT. Wijaya Karya</option>
+                                <option value="PT. Pembangunan Perumahan">PT. Pembangunan Perumahan</option>
+                                <option value="PT. Hutama Karya">PT. Hutama Karya</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Apa alasan utamanya? (Bisa pilih >1)</p>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexReason" value="Info lowongan/magang sangat jelas"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Info
+                                    lowongan/magang sangat jelas
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexReason"
+                                        value="Inovasi/produk yang dipamerkan keren"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Inovasi/produk
+                                    yang dipamerkan keren
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexReason"
+                                        value="Perwakilan perusahaan ramah & asik diajak diskusi"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Perwakilan
+                                    perusahaan ramah & asik diajak diskusi
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexReason"
+                                        value="Ada aktivitas/games menarik di booth"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Ada
+                                    aktivitas/games menarik di booth
+                                </label>
+                            </div>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Kategori perusahaan apa yang paling ingin kamu lihat LEBIH BANYAK di Compex tahun depan?
+                            </p>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexFutureCategory" value="Kontraktor"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Kontraktor
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexFutureCategory" value="Konsultan Perencana"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Konsultan
+                                    Perencana
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexFutureCategory" value="Tech & Software Sipil"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Tech & Software
+                                    Sipil
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexFutureCategory" value="Manufaktur Material"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Manufaktur
+                                    Material
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #222;">
+                                    <input type="checkbox" name="compexFutureCategory" value="Lainnya"
+                                        style="width: 16px; height: 16px; accent-color: var(--green);"> Lainnya..
+                                </label>
+                            </div>
+
+                            <p
+                                style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; color: #222;">
+                                Kritik & Saran singkat untuk Compex tahun depan: *</p>
+                            <textarea class="form-input compact" name="compexSuggestions" id="compexSuggestions"
+                                placeholder="Tuliskan kritik & saranmu di sini... *" rows="4"
+                                style="resize: vertical;"></textarea>
+                        </div>
+                    </div>
+
                     <!-- Payment Info Compact -->
                     <div class="payment-info-compact" id="paymentInfo">
                         <div class="payment-accounts">
@@ -795,17 +951,17 @@
                 pricing: `
                     <p><strong>Online:</strong> Rp 50.000</p>
                     <p><strong>Offline Single (Internal):</strong> Rp 80.000</p>
-                    <p><strong>Offline Single (External):</strong> Rp 90.000</p>
+                    <p><strong>Offline Single (Regular):</strong> Rp 90.000</p>
                     <p><strong>Offline Bundling 2 (Duo):</strong> Rp 170.000</p>
                     <p><strong>Offline Bundling 3 (Trio):</strong> Rp 250.000</p>
                 `,
                 dates: `
                     <p><strong>Event Date:</strong> 23 May 2026</p>
-                    <p><strong>Registration:</strong> 5 - 15 May 2026</p>
+                    <p><strong>Registration:</strong> 6 - 15 May 2026</p>
                 `,
                 contact: `
-                    <p><strong>Vita</strong></p>
-                    <p>WA: +62 821-3411-0186</p>
+                    <p><strong>Fajriah</strong></p>
+                    <p>WA: +62 819-1802-8216</p>
                     <hr style="margin: 8px 0; border-color: rgba(0,0,0,0.1);">
                     <p><strong>Tama</strong></p>
                     <p>WA: +62 895-3332-85030</p>
@@ -828,7 +984,8 @@
                         <li>No smoking inside the venue</li>
                     </ul>
                 `,
-                feeText: 'Online: Rp 50k | Offline: 80k/90k/170k/250k'
+                feeText: 'Online: Rp 50k | Offline: 80k/90k/170k/250k',
+                poster: 'assets/images/poster-semnas.png'
             },
             Webinar: {
                 pricing: `
@@ -852,7 +1009,10 @@
             COMPEX: {
                 pricing: `<p>Free</p>`,
                 dates: `<p><strong>Event Date:</strong> 23 May 2026</p>`,
-                contact: `<p>Contact info coming soon</p>`,
+                contact: `
+                    <p><strong>Axel</strong></p>
+                    <p>WA: +62 877-7765-3044</p>
+                `,
                 feeText: 'Free'
             }
         };
@@ -911,6 +1071,7 @@
             const individualForm = document.getElementById('individualForm');
             const workshopForm = document.getElementById('workshopForm');
             const seminarForm = document.getElementById('seminarForm');
+            const compexForm = document.getElementById('compexForm');
             const mainEvents = ['Workshop', 'Webinar', 'COMPEX'];
 
             // Hide all forms first
@@ -918,10 +1079,12 @@
             individualForm.style.display = 'none';
             workshopForm.style.display = 'none';
             if (seminarForm) seminarForm.style.display = 'none';
+            if (compexForm) compexForm.style.display = 'none';
             toggleRequiredFields('competitionForm', false);
             toggleRequiredFields('individualForm', false);
             toggleRequiredFields('workshopForm', false);
             toggleRequiredFields('seminarForm', false);
+            if (compexForm) toggleRequiredFields('compexForm', false);
 
             if (eventValue === 'Workshop') {
                 workshopForm.style.display = 'block';
@@ -945,6 +1108,12 @@
                     indPayment.disabled = true;
                 }
                 if (typeof resetSeminarForm === 'function') resetSeminarForm();
+            } else if (eventValue === 'COMPEX') {
+                if (compexForm) {
+                    compexForm.style.display = 'block';
+                    toggleRequiredFields('compexForm', true);
+                }
+                document.getElementById('paymentInfo').style.display = 'none';
             } else if (mainEvents.includes(eventValue)) {
                 // Show individual form for other main events
                 individualForm.style.display = 'block';
@@ -1154,7 +1323,7 @@
                 if (seminarReferralVerified) {
                     amountText = 'Rp 80.000 (Internal Single)';
                 } else {
-                    amountText = 'Rp 90.000 (External Single)';
+                    amountText = 'Rp 90.000 (Regular Single)';
                 }
             } else if (packageValue === 'Duo') {
                 amountText = 'Rp 170.000 (Bundling 2)';
@@ -1548,6 +1717,20 @@
         function toggleOtherProfession() {
             const professionSelect = document.getElementById('profession');
             const otherInput = document.getElementById('otherProfession');
+
+            if (professionSelect.value === 'Other') {
+                otherInput.style.display = 'block';
+                otherInput.setAttribute('required', '');
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.removeAttribute('required');
+                otherInput.value = '';
+            }
+        }
+
+        function toggleCompexOtherProfession() {
+            const professionSelect = document.getElementById('compexProfession');
+            const otherInput = document.getElementById('compexOtherProfession');
 
             if (professionSelect.value === 'Other') {
                 otherInput.style.display = 'block';
@@ -2069,8 +2252,33 @@
                         formData[`person${i}_province`] = document.querySelector(`input[name="seminarProvince${i}"]`)?.value || '';
                     }
 
+                } else if (eventType === 'COMPEX') {
+                    const compexReasons = Array.from(document.querySelectorAll('input[name="compexReason"]:checked')).map(cb => cb.value).join(', ');
+                    const compexCategories = Array.from(document.querySelectorAll('input[name="compexFutureCategory"]:checked')).map(cb => cb.value).join(', ');
+
+                    formData = {
+                        event: eventType,
+                        fullName: document.getElementById('compexName').value,
+                        institution: document.getElementById('compexInstitution').value,
+                        profession: document.getElementById('compexProfession').value === 'Other'
+                            ? document.getElementById('compexOtherProfession').value
+                            : document.getElementById('compexProfession').value,
+                        waNumber: document.getElementById('compexWhatsapp').value,
+                        email: document.getElementById('compexEmail').value,
+                        compexOverallSatisfaction: document.getElementById('compexOverallSatisfaction').value,
+                        compexExpectation: document.getElementById('compexExpectation').value,
+                        compexBestBooth: document.getElementById('compexBestBooth').value,
+                        compexReason: compexReasons,
+                        compexFutureCategory: compexCategories,
+                        compexSuggestions: document.getElementById('compexSuggestions').value,
+                        studentIdPhoto: '',
+                        studentIdPhotoName: '',
+                        paymentProof: '',
+                        paymentProofName: '',
+                        ticketType: ''
+                    };
                 } else {
-                    // Standard Individual Submission (COMPEX, Webinar)
+                    // Standard Individual Submission (Webinar)
                     const studentIdFile = document.getElementById('individualStudentIdPhoto').files[0];
                     let paymentFile = null;
 
@@ -2121,7 +2329,11 @@
                     showErrorModal(result.message);
                 } else {
                     // Show success message
-                    showSuccessModal(eventType);
+                    let attendanceVal = '';
+                    if (eventType === 'Seminar') {
+                        attendanceVal = document.getElementById('seminarAttendance').value;
+                    }
+                    showSuccessModal(eventType, attendanceVal);
                     // Reset form
                     this.reset();
                     document.getElementById('teamMembersContainer').innerHTML = '';
@@ -2154,7 +2366,7 @@
         // Modal Functions
         // Modal Functions
         // Modal Functions
-        function showSuccessModal(eventType) {
+        function showSuccessModal(eventType, attendanceType = '') {
             const modal = document.getElementById('successModal');
             const modalText = document.getElementById('successModalText');
 
@@ -2175,13 +2387,23 @@
                     </a>
                 `;
             } else if (eventType === 'Seminar') {
-                modalText.innerHTML = `
-                    Terima kasih sudah mendaftar Seminar Nasional CEIC SEASON XIV.<br><br>
-                    Buka tautan ini untuk bergabung ke grup WhatsApp saya:<br>
-                    <a href="https://chat.whatsapp.com/BPcDXBcfAOz9yY263kD9rv" target="_blank" style="color: #4CAF50; text-decoration: underline; font-weight: 600;">
-                        Join WhatsApp Group
-                    </a>
-                `;
+                if (attendanceType === 'Online') {
+                    modalText.innerHTML = `
+                        Terima kasih sudah mendaftar Seminar Nasional CEIC SEASON XIV.<br><br>
+                        Buka tautan ini untuk bergabung ke grup WhatsApp (Online):<br>
+                        <a href="https://chat.whatsapp.com/JzUZE3U60Ee6NBhnsvzL6z" target="_blank" style="color: #4CAF50; text-decoration: underline; font-weight: 600;">
+                            Join WhatsApp Group Online
+                        </a>
+                    `;
+                } else {
+                    modalText.innerHTML = `
+                        Terima kasih sudah mendaftar Seminar Nasional CEIC SEASON XIV.<br><br>
+                        Buka tautan ini untuk bergabung ke grup WhatsApp (Offline):<br>
+                        <a href="https://chat.whatsapp.com/EZ2PoFPyyWOG7P17SqJXt7" target="_blank" style="color: #4CAF50; text-decoration: underline; font-weight: 600;">
+                            Join WhatsApp Group Offline
+                        </a>
+                    `;
+                }
             } else {
                 modalText.innerHTML = `
                     Thank you for registering for The 14th Season of CEIC. Please confirm via the contact person provided.

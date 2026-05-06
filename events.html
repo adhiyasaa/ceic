@@ -1102,11 +1102,12 @@
                     <h2 class="font-rough text-beige event-title">National Seminar</h2>
                 </div>
 
-                <!-- Speakers Banner -->
-                <div class="speakers-banner">
-                    <div class="speakers-container">
-                        <img src="assets/images/speaker.png" alt="Speakers Coming Soon" class="speaker-image">
-                        <p class="speaker-label">Speaker</p>
+                <!-- Poster Banner (Clickable to enlarge) -->
+                <div class="speakers-banner" style="margin-bottom: 2rem;">
+                    <div class="speakers-container" style="max-width: 800px; margin: 0 auto;">
+                        <img src="assets/images/poster-semnas.png" alt="Poster National Seminar" class="speaker-image"
+                            style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s ease;"
+                            onclick="openPosterLightbox(this.src)" title="Klik untuk memperbesar">
                     </div>
                 </div>
 
@@ -1397,7 +1398,9 @@
                                 <i data-lucide="calendar-days"></i>
                                 <h3>Timeline</h3>
                             </div>
-                            <p class="highlight-date">23rd of May 2026</p>
+                            <p class="highlight-date"
+                                style="font-size: 24px !important; text-align: center; margin-top: 1.5rem; margin-bottom: 1rem; font-weight: bold; color: var(--green);">
+                                23rd of May 2026</p>
                         </div>
                     </div>
                 </div>
